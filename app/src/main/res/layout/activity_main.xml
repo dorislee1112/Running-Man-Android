@@ -13,31 +13,24 @@
         android:id="@+id/imageView1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
         android:maxHeight="100dp"
         android:maxWidth="100dp"
         android:scaleType="fitXY"
-        android:src="@drawable/runway" />
+        android:src="@drawable/runway"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
-<<<<<<< HEAD
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="70dip"
-        android:layout_marginTop="130dip"
-        android:text="Shake your Phone UP and DOWN"
-        android:id="@+id/textView" />
-=======
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="30dip"
-        android:layout_marginTop="180dip"
         android:scaleType="centerCrop"
         android:layout_gravity="center"
         android:textSize = "18sp"
-        android:text="Shake your Phone UP and DOWN" />
->>>>>>> origin/master
+        android:text="Shake your Phone UP and DOWN"
+        android:layout_alignTop="@+id/imageView2" />
 
     <ImageView
         android:id="@+id/imageView2"

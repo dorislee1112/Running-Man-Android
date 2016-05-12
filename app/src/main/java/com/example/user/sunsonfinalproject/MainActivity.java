@@ -7,12 +7,17 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.Toast;
 import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+
+import org.w3c.dom.Text;
+
+
 public class MainActivity extends AppCompatActivity {
     private SensorManager mSensorManager;   //體感(Sensor)使用管理
     private Sensor mSensor;                 //體感(Sensor)類別
@@ -22,18 +27,18 @@ public class MainActivity extends AppCompatActivity {
     private double mSpeed;                 //甩動力道數度
     private long mLastUpdateTime;           //觸發時間
     int num = 0;
+    Button times;
+
     //甩動力道數度設定值 (數值越大需甩動越大力，數值越小輕輕甩動即會觸發)
     private static final int SPEED_SHRESHOLD = 3000;
 
     //觸發間隔時間
     private static final int UPTATE_INTERVAL_TIME = 70;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         //取得體感(Sensor)服務使用權限
         mSensorManager = (SensorManager) this.getSystemService(Context.SENSOR_SERVICE);
 
@@ -80,7 +85,8 @@ public class MainActivity extends AppCompatActivity {
             if (mSpeed >= SPEED_SHRESHOLD)
             {
                 //達到搖一搖甩動後要做的事情
-                Log.d("TAG","搖一搖中...");
+                Log.d("TAG", "搖一搖中..."+num);
+                num++;
 
 
             }
