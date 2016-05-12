@@ -23,8 +23,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="70dip"
-        android:layout_marginTop="130dip"
+        android:layout_marginLeft="15dip"
+        android:layout_marginTop="180dip"
+        android:textSize = "22sp"
         android:text="Shake your Phone UP and DOWN" />
 
     <ImageView
@@ -34,6 +35,6 @@
         android:maxHeight="100dp"
         android:maxWidth="100dp"
         android:layout_marginLeft="100dip"
-        android:layout_marginTop="150dip"
+        android:layout_marginTop="200dip"
         android:src="@drawable/shake" />
 </RelativeLayout>
