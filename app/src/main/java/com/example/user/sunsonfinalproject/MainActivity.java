@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         //取得體感(Sensor)服務使用權限
         mSensorManager = (SensorManager) this.getSystemService(Context.SENSOR_SERVICE);
 
@@ -86,6 +87,8 @@ public class MainActivity extends AppCompatActivity {
             {
                 //達到搖一搖甩動後要做的事情
                 Log.d("TAG", "搖一搖中..."+num);
+
+
                 num++;
 
 
