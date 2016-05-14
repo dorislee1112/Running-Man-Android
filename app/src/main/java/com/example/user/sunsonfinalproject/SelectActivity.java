@@ -3,6 +3,7 @@ package com.example.user.sunsonfinalproject;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -21,15 +22,42 @@ public class SelectActivity extends Activity {
         selectUI.check.setOnClickListener(new Button.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        selectUI.check.setImageResource(R.drawable.sign_onclick);
                         Intent intent = new Intent();
                         intent.setClass(SelectActivity.this, MainActivity.class);
                         SelectActivity.this.startActivity(intent);
-                        Log.d("TAG", "push!");
 
             }
 
         });
+        selectUI.up.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectUI.up.setImageResource(R.drawable.up_onclick);
+            }
 
+        });
+        selectUI.down.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectUI.down.setImageResource(R.drawable.down_onclick);
+            }
+
+        });
+        selectUI.left.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectUI.left.setImageResource(R.drawable.left_onclick);
+            }
+
+        });
+        selectUI.right.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectUI.right.setImageResource(R.drawable.right_onclick);
+            }
+
+        });
     }
 
 
