@@ -23,8 +23,12 @@ public class SelectActivity extends Activity {
         selectUI.check.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View arg0, boolean isFocused) {
-                if (isFocused == true)
+                if (isFocused == true) {
                     selectUI.check.setImageResource(R.drawable.sign_onclick);
+                    Intent intent = new Intent();
+                    intent.setClass(SelectActivity.this, WaitActivity.class);
+                    SelectActivity.this.startActivity(intent);
+                }
                 else
                     selectUI.check.setImageResource(R.drawable.sign);
             }
@@ -33,50 +37,48 @@ public class SelectActivity extends Activity {
             @Override
             public void onFocusChange(View arg0, boolean isFocused) {
                 if (isFocused == true)
-                    selectUI.check.setImageResource(R.drawable.up_onclick);
+                    selectUI.up.setImageResource(R.drawable.up_onclick);
                 else
-                    selectUI.check.setImageResource(R.drawable.up);
+                    selectUI.up.setImageResource(R.drawable.up);
             }
         });
         selectUI.down.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View arg0, boolean isFocused) {
                 if (isFocused == true)
-                    selectUI.check.setImageResource(R.drawable.down_onclick);
+                    selectUI.down.setImageResource(R.drawable.down_onclick);
                 else
-                    selectUI.check.setImageResource(R.drawable.down);
+                    selectUI.down.setImageResource(R.drawable.down);
             }
         });
         selectUI.right.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View arg0, boolean isFocused) {
                 if (isFocused == true)
-                    selectUI.check.setImageResource(R.drawable.right_onclick);
+                    selectUI.right.setImageResource(R.drawable.right_onclick);
                 else
-                    selectUI.check.setImageResource(R.drawable.right);
+                    selectUI.right.setImageResource(R.drawable.right);
             }
         });
         selectUI.left.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View arg0, boolean isFocused) {
                 if (isFocused == true)
-                    selectUI.check.setImageResource(R.drawable.left_onclick);
+                    selectUI.left.setImageResource(R.drawable.left_onclick);
                 else
-                    selectUI.check.setImageResource(R.drawable.left);
+                    selectUI.left.setImageResource(R.drawable.left);
             }
         });
-        selectUI.check.setOnClickListener(new Button.OnClickListener() {
+        /*selectUI.check.setOnClickListener(new Button.OnClickListener() {
                     @Override
-                    public void onClick(View v) {
+             public void onClick(View v) {
                         selectUI.check.setImageResource(R.drawable.sign_onclick);
                         Intent intent = new Intent();
                         intent.setClass(SelectActivity.this, WaitActivity.class);
                         SelectActivity.this.startActivity(intent);
-
             }
-
         });
-        /*selectUI.up.setOnClickListener(new Button.OnClickListener() {
+        selectUI.up.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
                 selectUI.up.setImageResource(R.drawable.up_onclick);
