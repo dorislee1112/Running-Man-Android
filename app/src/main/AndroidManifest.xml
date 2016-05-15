@@ -23,6 +23,10 @@
             android:name=".SelectActivity"
             android:label=".select"
             ></activity>
+        <activity
+            android:name=".WaitActivity"
+            android:label=".waiting"
+            ></activity>
     </application>
 
 </manifest>
