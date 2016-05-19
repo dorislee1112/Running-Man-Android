@@ -25,6 +25,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.InetAddress;
+import java.net.InetSocketAddress;
 import java.net.Socket;
 
 
@@ -43,21 +44,26 @@ public class MainActivity extends AppCompatActivity {
     private int serverPort =EntryActivity.serverPort;
     */
    //public static InetAddress serverIp;
-    public static int serverPort=8888;
-    public static Socket clientSocket;
+    //public static int serverPort=1234;
+    //public static Socket clientSocket;
+    private int serverPort=8888;
+    private Socket clientSocket;
     public static BufferedReader br;
     public static PrintWriter writer;
+    Thread thread;
+
     //甩動力道數度設定值 (數值越大需甩動越大力，數值越小輕輕甩動即會觸發)
     private static final int SPEED_SHRESHOLD = 3000;
 
     //觸發間隔時間
     private static final int UPTATE_INTERVAL_TIME = 70;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Thread thread=new Thread(Connection);                //賦予執行緒工作
+        thread=new Thread(Connection);                //賦予執行緒工作
         thread.start();
         // 嘗試連接Server
        /* try {
@@ -92,9 +98,11 @@ public class MainActivity extends AppCompatActivity {
             // TODO Auto-generated method stub
             try{
                 // IP為Server端
-                InetAddress serverIp = InetAddress.getByName("140.114.123.209");
-                System.out.println("in!!!");
-                clientSocket = new Socket(serverIp, serverPort);
+                InetAddress serverIp = InetAddress.getByName("172.20.10.10");
+                System.out.println(serverIp);
+                clientSocket = new Socket();
+                clientSocket.bind(null);
+                clientSocket.connect(new InetSocketAddress(serverIp,serverPort),10000);
                 System.out.println("Socket已經連線");
                 //取得網路輸出串流
                 writer = new PrintWriter( new OutputStreamWriter(clientSocket.getOutputStream()));
@@ -158,8 +166,8 @@ public class MainActivity extends AppCompatActivity {
                 //達到搖一搖甩動後要做的事情
 
                 Log.d("TAG", "搖一搖中..." + num);
-//                    writer.println(num);
-  //                  writer.flush();
+                    writer.println(num);
+                writer.flush();
                 num++;
 
 
