@@ -1,6 +1,7 @@
 package com.example.user.sunsonfinalproject;
 
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private BufferedReader br =EntryActivity.br;
     private int serverPort =EntryActivity.serverPort;
     */
-   public static InetAddress serverIp;
+   //public static InetAddress serverIp;
     public static int serverPort=8888;
     public static Socket clientSocket;
     public static BufferedReader br;
@@ -91,7 +92,9 @@ public class MainActivity extends AppCompatActivity {
             try{
                 // IP為Server端
                 InetAddress serverIp = InetAddress.getByName("140.114.123.209");
-                Socket clientSocket = new Socket(serverIp, serverPort);
+                System.out.println("in!!!");
+                clientSocket = new Socket(serverIp, serverPort);
+                System.out.println("Socket已經連線");
                 //取得網路輸出串流
                 writer = new PrintWriter( new OutputStreamWriter(clientSocket.getOutputStream()));
                 // 取得網路輸入串流
@@ -155,6 +158,7 @@ public class MainActivity extends AppCompatActivity {
             {
                 //達到搖一搖甩動後要做的事情
 
+<<<<<<< HEAD
                 Log.d("TAG", "搖一搖中..."+num);
 <<<<<<< HEAD
 
@@ -165,6 +169,11 @@ public class MainActivity extends AppCompatActivity {
                 writer.println(num);
                 writer.flush();
 >>>>>>> parent of a65105c... thread
+=======
+                Log.d("TAG", "搖一搖中..." + num);
+//                    writer.println(num);
+  //                  writer.flush();
+>>>>>>> origin/master
                 num++;
 
 
