@@ -65,21 +65,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         thread=new Thread(Connection);                //賦予執行緒工作
         thread.start();
-        // 嘗試連接Server
-        try {
-            // 設定IP
-            serverIp = InetAddress.getByName("140.114.123.209");
-            // 初始socket連接
-            clientSocket=new Socket(serverIp,serverPort);
-            // 接收來自Server的訊息
-            br=new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-            writer = new PrintWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
-            // 關閉連線
-            clientSocket.close();
-        } catch (IOException e) {
-            // 出錯後顯示錯誤訊息
-            System.out.println( "Connect error.");
-        }
 
         //取得體感(Sensor)服務使用權限
         mSensorManager = (SensorManager) this.getSystemService(Context.SENSOR_SERVICE);
@@ -92,13 +77,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
     private Runnable Connection=new Runnable() {
         public void run() {
             // TODO Auto-generated method stub
             try{
                 // IP為Server端
-                InetAddress serverIp = InetAddress.getByName("172.20.10.10");
+                InetAddress serverIp = InetAddress.getByName("172.20.10.2");
                 System.out.println(serverIp);
                 clientSocket = new Socket();
                 clientSocket.bind(null);
@@ -108,18 +92,7 @@ public class MainActivity extends AppCompatActivity {
                 writer = new PrintWriter( new OutputStreamWriter(clientSocket.getOutputStream()));
                 // 取得網路輸入串流
                 br = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-                // 當連線後
-                /*while (clientSocket.isConnected()) {
-                    // 取得網路訊息
-                    String tmp = br.readLine();    //宣告一個緩衝,從br串流讀取值
-                    // 如果不是空訊息
-                    if(tmp!=null){
-                        //將取到的String抓取{}範圍資料
-                        tmp=tmp.substring(tmp.indexOf("{"), tmp.lastIndexOf("}") + 1);
-                        json_read=new JSONObject(tmp);
-                        //從java伺服器取得值後做拆解,可使用switch做不同動作的處理
-                    }
-                }*/
+
             }catch(Exception e){
                 //當斷線時會跳到catch,可以在這裡寫上斷開連線後的處理
                 e.printStackTrace();
@@ -128,8 +101,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     };
-=======
->>>>>>> parent of a65105c... thread
     private SensorEventListener SensorListener = new SensorEventListener()
     {
 
