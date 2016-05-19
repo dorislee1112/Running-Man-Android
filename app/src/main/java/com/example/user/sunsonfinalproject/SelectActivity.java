@@ -69,43 +69,7 @@ public class SelectActivity extends Activity {
                     selectUI.left.setImageResource(R.drawable.left);
             }
         });
-        /*selectUI.check.setOnClickListener(new Button.OnClickListener() {
-                    @Override
-             public void onClick(View v) {
-                        selectUI.check.setImageResource(R.drawable.sign_onclick);
-                        Intent intent = new Intent();
-                        intent.setClass(SelectActivity.this, WaitActivity.class);
-                        SelectActivity.this.startActivity(intent);
-            }
-        });
-        selectUI.up.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectUI.up.setImageResource(R.drawable.up_onclick);
-            }
 
-        });
-        selectUI.down.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectUI.down.setImageResource(R.drawable.down_onclick);
-            }
-
-        });
-        selectUI.left.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectUI.left.setImageResource(R.drawable.left_onclick);
-            }
-
-        });
-        selectUI.right.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectUI.right.setImageResource(R.drawable.right_onclick);
-            }
-
-        });*/
     }
 
 

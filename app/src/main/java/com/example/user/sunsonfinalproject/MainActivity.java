@@ -17,6 +17,10 @@ import android.hardware.SensorManager;
 
 import org.w3c.dom.Text;
 
+import java.io.BufferedReader;
+import java.net.InetAddress;
+import java.net.Socket;
+
 
 public class MainActivity extends AppCompatActivity {
     private SensorManager mSensorManager;   //體感(Sensor)使用管理
@@ -27,8 +31,13 @@ public class MainActivity extends AppCompatActivity {
     private double mSpeed;                 //甩動力道數度
     private long mLastUpdateTime;           //觸發時間
     int num = 0;
-    Button times;
+    private InetAddress serverIp2;
+    private Socket clientSocket2;
+    private BufferedReader br2;
 
+    //serverIp2 = serverIp;
+    //clientSockt2 = clientSocket;
+    //br2 = br;
     //甩動力道數度設定值 (數值越大需甩動越大力，數值越小輕輕甩動即會觸發)
     private static final int SPEED_SHRESHOLD = 3000;
 
