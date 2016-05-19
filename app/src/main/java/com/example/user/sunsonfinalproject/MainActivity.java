@@ -18,6 +18,11 @@ import android.hardware.SensorManager;
 import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 
@@ -31,12 +36,16 @@ public class MainActivity extends AppCompatActivity {
     private double mSpeed;                 //甩動力道數度
     private long mLastUpdateTime;           //觸發時間
     int num = 0;
-    private InetAddress serverIp = EntryActivity.serverIp;
+   /* private InetAddress serverIp = EntryActivity.serverIp;
     private Socket clientSocket = EntryActivity.clientSocket;
     private BufferedReader br =EntryActivity.br;
     private int serverPort =EntryActivity.serverPort;
-
-
+    */
+   public static InetAddress serverIp;
+    public static int serverPort=8888;
+    public static Socket clientSocket;
+    public static BufferedReader br;
+    public static PrintWriter writer;
     //甩動力道數度設定值 (數值越大需甩動越大力，數值越小輕輕甩動即會觸發)
     private static final int SPEED_SHRESHOLD = 3000;
 
@@ -47,6 +56,21 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        // 嘗試連接Server
+        try {
+            // 設定IP
+            serverIp = InetAddress.getByName("140.114.123.209");
+            // 初始socket連接
+            clientSocket=new Socket(serverIp,serverPort);
+            // 接收來自Server的訊息
+            br=new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            writer = new PrintWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
+            // 關閉連線
+            clientSocket.close();
+        } catch (IOException e) {
+            // 出錯後顯示錯誤訊息
+            System.out.println( "Connect error.");
+        }
 
         //取得體感(Sensor)服務使用權限
         mSensorManager = (SensorManager) this.getSystemService(Context.SENSOR_SERVICE);
@@ -94,9 +118,10 @@ public class MainActivity extends AppCompatActivity {
             if (mSpeed >= SPEED_SHRESHOLD)
             {
                 //達到搖一搖甩動後要做的事情
+
                 Log.d("TAG", "搖一搖中..."+num);
-
-
+                writer.println(num);
+                writer.flush();
                 num++;
 
 
