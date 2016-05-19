@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private BufferedReader br =EntryActivity.br;
     private int serverPort =EntryActivity.serverPort;
     */
-   public static InetAddress serverIp;
+   //public static InetAddress serverIp;
     public static int serverPort=8888;
     public static Socket clientSocket;
     public static BufferedReader br;
@@ -90,11 +90,12 @@ public class MainActivity extends AppCompatActivity {
     private Runnable Connection=new Runnable() {
         public void run() {
             // TODO Auto-generated method stub
-            System.out.println("IN");
             try{
                 // IP為Server端
-               // InetAddress serverIp = InetAddress.getByName("140.114.123.209");
-                clientSocket = new Socket("140.114.123.209", 8888);
+                InetAddress serverIp = InetAddress.getByName("140.114.123.209");
+                System.out.println("in!!!");
+                clientSocket = new Socket(serverIp, serverPort);
+                System.out.println("Socket已經連線");
                 //取得網路輸出串流
                 writer = new PrintWriter( new OutputStreamWriter(clientSocket.getOutputStream()));
                 // 取得網路輸入串流
