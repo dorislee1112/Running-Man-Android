@@ -56,14 +56,12 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Thread thread=new Thread(Connection);                //賦予執行緒工作
-        thread.start();
         // 嘗試連接Server
-       /* try {
+        try {
             // 設定IP
-            //serverIp = InetAddress.getByName("140.114.123.209");
+            serverIp = InetAddress.getByName("140.114.123.209");
             // 初始socket連接
-            clientSocket=new Socket("140.114.123.209",8888);
+            clientSocket=new Socket(serverIp,serverPort);
             // 接收來自Server的訊息
             br=new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             writer = new PrintWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
@@ -72,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
             // 出錯後顯示錯誤訊息
             System.out.println( "Connect error.");
-        }*/
+        }
 
         //取得體感(Sensor)服務使用權限
         mSensorManager = (SensorManager) this.getSystemService(Context.SENSOR_SERVICE);
@@ -84,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
         mSensorManager.registerListener(SensorListener, mSensor, SensorManager.SENSOR_DELAY_GAME);
 
     }
+<<<<<<< HEAD
 
 
     private Runnable Connection=new Runnable() {
@@ -117,6 +116,8 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     };
+=======
+>>>>>>> parent of a65105c... thread
     private SensorEventListener SensorListener = new SensorEventListener()
     {
 
@@ -155,10 +156,15 @@ public class MainActivity extends AppCompatActivity {
                 //達到搖一搖甩動後要做的事情
 
                 Log.d("TAG", "搖一搖中..."+num);
+<<<<<<< HEAD
 
                     writer.println(num);
                     writer.flush();
 
+=======
+                writer.println(num);
+                writer.flush();
+>>>>>>> parent of a65105c... thread
                 num++;
 
 
