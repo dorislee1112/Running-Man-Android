@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     public static int serverPort=8888;
     public static Socket clientSocket;
     public static BufferedReader br;
-    public static BufferedWriter bw;
+    public static PrintWriter writer;
     //甩動力道數度設定值 (數值越大需甩動越大力，數值越小輕輕甩動即會觸發)
     private static final int SPEED_SHRESHOLD = 3000;
 
@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
                 InetAddress serverIp = InetAddress.getByName("140.114.123.209");
                 Socket clientSocket = new Socket(serverIp, serverPort);
                 //取得網路輸出串流
-                bw = new BufferedWriter( new OutputStreamWriter(clientSocket.getOutputStream()));
+                writer = new PrintWriter( new OutputStreamWriter(clientSocket.getOutputStream()));
                 // 取得網路輸入串流
                 br = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 // 當連線後
@@ -155,10 +155,10 @@ public class MainActivity extends AppCompatActivity {
                 //達到搖一搖甩動後要做的事情
 
                 Log.d("TAG", "搖一搖中..."+num);
-                try {
-                    bw.write(num);
-                    bw.flush();
-                }catch (IOException e){}
+
+                    writer.println(num);
+                    writer.flush();
+
                 num++;
 
 
