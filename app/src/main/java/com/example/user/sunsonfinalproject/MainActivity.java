@@ -31,13 +31,12 @@ public class MainActivity extends AppCompatActivity {
     private double mSpeed;                 //甩動力道數度
     private long mLastUpdateTime;           //觸發時間
     int num = 0;
-    private InetAddress serverIp2;
-    private Socket clientSocket2;
-    private BufferedReader br2;
+    private InetAddress serverIp = EntryActivity.serverIp;
+    private Socket clientSocket = EntryActivity.clientSocket;
+    private BufferedReader br =EntryActivity.br;
+    private int serverPort =EntryActivity.serverPort;
 
-    //serverIp2 = serverIp;
-    //clientSockt2 = clientSocket;
-    //br2 = br;
+
     //甩動力道數度設定值 (數值越大需甩動越大力，數值越小輕輕甩動即會觸發)
     private static final int SPEED_SHRESHOLD = 3000;
 

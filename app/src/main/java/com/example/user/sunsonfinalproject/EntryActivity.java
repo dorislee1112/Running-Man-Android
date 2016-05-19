@@ -34,9 +34,9 @@ public class EntryActivity extends Activity {
             // 設定IP
             serverIp = InetAddress.getByName("140.114.123.209");
             // 初始socket連接
-            Socket clientSocket=new Socket(serverIp,serverPort);
+            clientSocket=new Socket(serverIp,serverPort);
             // 接收來自Server的訊息
-            BufferedReader  br=new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            br=new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             // 關閉連線
             clientSocket.close();
         } catch (IOException e) {
