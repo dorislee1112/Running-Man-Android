@@ -20,11 +20,6 @@ public class SelectUI {
         down= (ImageButton)activity.findViewById(R.id.down_button);
         right = (ImageButton)activity.findViewById(R.id.right_button);
         left = (ImageButton)activity.findViewById(R.id.left_button);
-        check.requestFocus();
-        up.requestFocus();
-        down.requestFocus();
-        right.requestFocus();
-        left.requestFocus();
     }
 
 }
