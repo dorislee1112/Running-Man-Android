@@ -10,11 +10,20 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.net.InetAddress;
+import java.net.Socket;
+
 /**
  * Created by chanhua on 16/5/12.
  */
 public class SelectActivity extends Activity {
     SelectUI selectUI;
+    private InetAddress serverIp = EntryActivity.serverIp;
+    private int serverPort=8888;
+    private Socket clientSocket = EntryActivity.clientSocket;
+    private BufferedReader br = EntryActivity.br;
+    
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.select);

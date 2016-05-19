@@ -8,11 +8,20 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import java.io.BufferedReader;
+import java.net.InetAddress;
+import java.net.Socket;
+
 /**
  * Created by user on 2016/5/15.
  */
 public class WaitActivity extends Activity {
     WaitUI waitUI;
+    private InetAddress serverIp = EntryActivity.serverIp;
+    private int serverPort=8888;
+    private Socket clientSocket = EntryActivity.clientSocket;
+    private BufferedReader br = EntryActivity.br;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.waiting);
