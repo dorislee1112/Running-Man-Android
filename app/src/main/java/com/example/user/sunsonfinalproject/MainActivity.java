@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     public static int serverPort=8888;
     public static Socket clientSocket;
     public static BufferedReader br;
-    public static PrintWriter writer;
+    public static BufferedWriter bw;
     //甩動力道數度設定值 (數值越大需甩動越大力，數值越小輕輕甩動即會觸發)
     private static final int SPEED_SHRESHOLD = 3000;
 
@@ -56,12 +56,14 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Thread thread=new Thread(Connection);                //賦予執行緒工作
+        thread.start();
         // 嘗試連接Server
-        try {
+       /* try {
             // 設定IP
-            serverIp = InetAddress.getByName("140.114.123.209");
+            //serverIp = InetAddress.getByName("140.114.123.209");
             // 初始socket連接
-            clientSocket=new Socket(serverIp,serverPort);
+            clientSocket=new Socket("140.114.123.209",8888);
             // 接收來自Server的訊息
             br=new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             writer = new PrintWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
@@ -70,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
             // 出錯後顯示錯誤訊息
             System.out.println( "Connect error.");
-        }
+        }*/
 
         //取得體感(Sensor)服務使用權限
         mSensorManager = (SensorManager) this.getSystemService(Context.SENSOR_SERVICE);
@@ -82,6 +84,39 @@ public class MainActivity extends AppCompatActivity {
         mSensorManager.registerListener(SensorListener, mSensor, SensorManager.SENSOR_DELAY_GAME);
 
     }
+
+
+    private Runnable Connection=new Runnable() {
+        public void run() {
+            // TODO Auto-generated method stub
+            try{
+                // IP為Server端
+                InetAddress serverIp = InetAddress.getByName("140.114.123.209");
+                Socket clientSocket = new Socket(serverIp, serverPort);
+                //取得網路輸出串流
+                bw = new BufferedWriter( new OutputStreamWriter(clientSocket.getOutputStream()));
+                // 取得網路輸入串流
+                br = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+                // 當連線後
+                /*while (clientSocket.isConnected()) {
+                    // 取得網路訊息
+                    String tmp = br.readLine();    //宣告一個緩衝,從br串流讀取值
+                    // 如果不是空訊息
+                    if(tmp!=null){
+                        //將取到的String抓取{}範圍資料
+                        tmp=tmp.substring(tmp.indexOf("{"), tmp.lastIndexOf("}") + 1);
+                        json_read=new JSONObject(tmp);
+                        //從java伺服器取得值後做拆解,可使用switch做不同動作的處理
+                    }
+                }*/
+            }catch(Exception e){
+                //當斷線時會跳到catch,可以在這裡寫上斷開連線後的處理
+                e.printStackTrace();
+                Log.e("text","Socket連線="+e.toString());
+                finish();    //當斷線時自動關閉房間
+            }
+        }
+    };
     private SensorEventListener SensorListener = new SensorEventListener()
     {
 
@@ -120,8 +155,10 @@ public class MainActivity extends AppCompatActivity {
                 //達到搖一搖甩動後要做的事情
 
                 Log.d("TAG", "搖一搖中..."+num);
-                writer.println(num);
-                writer.flush();
+                try {
+                    bw.write(num);
+                    bw.flush();
+                }catch (IOException e){}
                 num++;
 
 

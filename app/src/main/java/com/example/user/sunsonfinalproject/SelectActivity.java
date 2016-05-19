@@ -23,7 +23,7 @@ public class SelectActivity extends Activity {
     private int serverPort=8888;
     private Socket clientSocket = EntryActivity.clientSocket;
     private BufferedReader br = EntryActivity.br;
-    
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.select);
