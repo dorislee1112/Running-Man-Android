@@ -39,32 +39,7 @@ public class ConnectActivity extends Activity{
         /*writer.println("enter");
         writer.flush();*/
 
-//        if(finish==1){
-//            writer.println("enter");
-//            writer.flush();
-//       try {
-//            String line=this.br.readLine();
-//            System.out.println("收到的");
-//            if (line.equals("start")) {
-//                Log.d("TAG", "start...");
-//                writer.println("i get start");
-//                writer.flush();
-//                Intent intent = new Intent();
-//                intent.setClass(ConnectActivity.this, SelectActivity.class);
-//                ConnectActivity.this.startActivity(intent);
-//            }
-//        }catch (IOException e){}
-//        }
-             /*   connectUI.next.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //waitUI.next.setImageResource(R.drawable.sign_onclick);
-                Intent intent = new Intent();
-                intent.setClass(ConnectActivity.this, SelectActivity.class);
-                ConnectActivity.this.startActivity(intent);
-            }
 
-        });*/
     }
     private Runnable Connection=new Runnable() {
         public void run() {
