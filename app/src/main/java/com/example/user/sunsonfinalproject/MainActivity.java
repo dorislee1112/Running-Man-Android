@@ -46,11 +46,11 @@ public class MainActivity extends AppCompatActivity {
    //public static InetAddress serverIp;
     //public static int serverPort=1234;
     //public static Socket clientSocket;
-    private int serverPort=8888;
-    private Socket clientSocket;
-    public static BufferedReader br;
-    public static PrintWriter writer;
-    Thread thread;
+    private int serverPort1=SelectActivity.serverPort;
+    private Socket clientSocket1=SelectActivity.clientSocket;
+    private BufferedReader br1=SelectActivity.br;
+    public PrintWriter writer1=SelectActivity.writer;
+    //Thread thread;
 
     //甩動力道數度設定值 (數值越大需甩動越大力，數值越小輕輕甩動即會觸發)
     private static final int SPEED_SHRESHOLD = 3000;
@@ -63,8 +63,8 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        thread=new Thread(Connection);                //賦予執行緒工作
-        thread.start();
+     //   thread=new Thread(Connection);                //賦予執行緒工作
+     //   thread.start();
 
         //取得體感(Sensor)服務使用權限
         mSensorManager = (SensorManager) this.getSystemService(Context.SENSOR_SERVICE);
@@ -77,12 +77,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private Runnable Connection=new Runnable() {
+   /* private Runnable Connection=new Runnable() {
         public void run() {
             // TODO Auto-generated method stub
             try{
                 // IP為Server端
-                InetAddress serverIp = InetAddress.getByName("172.20.10.2");
+                InetAddress serverIp = InetAddress.getByName("192.168.43.63");
                 System.out.println(serverIp);
                 clientSocket = new Socket();
                 clientSocket.bind(null);
@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
                 finish();    //當斷線時自動關閉房間
             }
         }
-    };
+    };*/
     private SensorEventListener SensorListener = new SensorEventListener()
     {
 
@@ -140,8 +140,8 @@ public class MainActivity extends AppCompatActivity {
 
                 Log.d("TAG", "搖一搖中..."+num);
 
-                    writer.println(num);
-                    writer.flush();
+                    writer1.println(num);
+                    writer1.flush();
                 num++;
 
 
