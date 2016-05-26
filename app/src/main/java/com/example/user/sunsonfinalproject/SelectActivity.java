@@ -38,51 +38,36 @@ public class SelectActivity extends Activity {
                     selectUI.check.setImageResource(R.drawable.sign);
             }
         });
-        selectUI.up.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        selectUI.up.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onFocusChange(View arg0, boolean isFocused) {
-                if (isFocused == true) {
-                    selectUI.up.setImageResource(R.drawable.up_onclick);
-                    writer1.println("up");
-                    writer1.flush();
-                } else
-                    selectUI.up.setImageResource(R.drawable.up);
+            public void onClick(View v) {
+                selectUI.up.setImageResource(R.drawable.up_onclick);
+                writer1.println("up");
+                writer1.flush();
             }
         });
-        selectUI.down.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        selectUI.down.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onFocusChange(View arg0, boolean isFocused) {
-                if (isFocused == true) {
-                    selectUI.down.setImageResource(R.drawable.down_onclick);
-                    writer1.println("down");
-                    writer1.flush();
-                }
-                else
-                    selectUI.down.setImageResource(R.drawable.down);
+            public void onClick(View v) {
+                selectUI.down.setImageResource(R.drawable.down_onclick);
+                writer1.println("down");
+                writer1.flush();
             }
         });
-        selectUI.right.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        selectUI.right.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onFocusChange(View arg0, boolean isFocused) {
-                if (isFocused == true) {
-                    selectUI.right.setImageResource(R.drawable.right_onclick);
-                    writer1.println("right");
-                    writer1.flush();
-                }
-                else
-                    selectUI.right.setImageResource(R.drawable.right);
+            public void onClick(View v) {
+                selectUI.down.setImageResource(R.drawable.right_onclick);
+                writer1.println("right");
+                writer1.flush();
             }
         });
-        selectUI.left.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        selectUI.left.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onFocusChange(View arg0, boolean isFocused) {
-                if (isFocused == true) {
-                    selectUI.left.setImageResource(R.drawable.left_onclick);
-                   writer1.println("left");
-                    writer1.flush();
-                }
-                else
-                    selectUI.left.setImageResource(R.drawable.left);
+            public void onClick(View v) {
+                selectUI.left.setImageResource(R.drawable.left_onclick);
+                writer1.println("down");
+                writer1.flush();
             }
         });
 
