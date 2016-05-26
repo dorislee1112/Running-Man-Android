@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="0dp"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    tools:context="com.example.user.sunsonfinalproject.MainActivity">
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/next_button"
+        android:adjustViewBounds="false"
+        android:accessibilityLiveRegion="polite"
+        android:layout_alignWithParentIfMissing="false"
+        android:background="#00ffffff"
+        android:tintMode="src_atop"
+        android:scaleType="fitXY"
+        android:src="@drawable/runway" />
+
+    <TextView
+        android:layout_width="300dip"
+        android:layout_height="50dip"
+        android:layout_marginTop="220dip"
+        android:layout_marginLeft="42dip"
+        android:scaleType="centerCrop"
+        android:layout_gravity="center"
+        android:textSize = "25sp"
+        android:text="Waiting for other players..." />
+
+</RelativeLayout>

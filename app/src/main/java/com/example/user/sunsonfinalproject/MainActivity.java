@@ -46,10 +46,10 @@ public class MainActivity extends AppCompatActivity {
    //public static InetAddress serverIp;
     //public static int serverPort=1234;
     //public static Socket clientSocket;
-    private int serverPort1=SelectActivity.serverPort;
-    private Socket clientSocket1=SelectActivity.clientSocket;
-    private BufferedReader br1=SelectActivity.br;
-    public PrintWriter writer1=SelectActivity.writer;
+   private int serverPort1=ConnectActivity.serverPort;
+    private Socket clientSocket1=ConnectActivity.clientSocket;
+    private BufferedReader br1=ConnectActivity.br;
+    private PrintWriter writer1=ConnectActivity.writer;
     //Thread thread;
 
     //甩動力道數度設定值 (數值越大需甩動越大力，數值越小輕輕甩動即會觸發)

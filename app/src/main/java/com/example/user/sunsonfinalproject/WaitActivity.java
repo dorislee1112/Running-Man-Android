@@ -18,10 +18,10 @@ import java.net.Socket;
  */
 public class WaitActivity extends Activity {
     WaitUI waitUI;
-    private int serverPort1=SelectActivity.serverPort;
-    private Socket clientSocket1=SelectActivity.clientSocket;
-    private BufferedReader br1=SelectActivity.br;
-    public PrintWriter writer1=SelectActivity.writer;
+    private int serverPort1=ConnectActivity.serverPort;
+    private Socket clientSocket1=ConnectActivity.clientSocket;
+    private BufferedReader br1=ConnectActivity.br;
+    private PrintWriter writer1=ConnectActivity.writer;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

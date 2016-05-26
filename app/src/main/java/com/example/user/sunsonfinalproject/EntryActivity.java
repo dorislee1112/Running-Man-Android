@@ -30,7 +30,7 @@ public class EntryActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setClass(EntryActivity.this, SelectActivity.class);
+                intent.setClass(EntryActivity.this, ConnectActivity.class);
                 EntryActivity.this.startActivity(intent);
 
             }
