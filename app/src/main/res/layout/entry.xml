@@ -10,31 +10,29 @@
     tools:context="com.example.user.sunsonfinalproject.MainActivity">
 
     <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:id="@+id/ic_launcher"
+        android:layout_width="230dp"
+        android:layout_height="230dp"
         android:maxHeight="100dp"
         android:maxWidth="100dp"
         android:scaleType="fitXY"
-        android:src="@drawable/cover"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:src="@drawable/ic_launcher"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="120dp" />
+        android:src="@drawable/name"
+        android:layout_above="@+id/ic_launcher"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Start"
         android:id="@+id/start_button"
-        android:layout_marginBottom="51dp"
-        android:layout_marginLeft="20dp"
         android:textStyle="bold|normal"
         android:textSize="40dp"
         android:background="#00ffffff"
@@ -42,9 +40,17 @@
         android:capitalize="words"
         android:clickable="true"
         android:enabled="true"
-        android:layout_alignBottom="@+id/imageView1"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textColor="#b1ffffff" />
+        android:textColor="#b1000000"
+        android:layout_below="@+id/ic_launcher"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="52dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView3"
+        android:layout_above="@+id/ic_launcher"
+        android:layout_alignRight="@+id/ic_launcher"
+        android:layout_alignEnd="@+id/ic_launcher" />
 
 </RelativeLayout>

@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
@@ -28,7 +29,17 @@ public class WaitActivity extends Activity {
         setContentView(R.layout.waiting);
         waitUI=new WaitUI(this);
 
-        waitUI.next.setOnClickListener(new Button.OnClickListener() {
+        
+
+        try{
+            String line = br1.readLine();
+            if(line.equals("start")){
+                Intent intent = new Intent();
+                intent.setClass(WaitActivity.this, MainActivity.class);
+                WaitActivity.this.startActivity(intent);
+            }
+        }catch(IOException e){}
+       /* waitUI.next.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //waitUI.next.setImageResource(R.drawable.sign_onclick);
@@ -37,6 +48,6 @@ public class WaitActivity extends Activity {
                 WaitActivity.this.startActivity(intent);
             }
 
-        });
+        });*/
     }
 }
