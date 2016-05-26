@@ -16,7 +16,7 @@
         android:maxHeight="100dp"
         android:maxWidth="100dp"
         android:scaleType="fitXY"
-        android:src="@drawable/entry"
+        android:src="@drawable/cover"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -34,6 +34,7 @@
         android:text="Start"
         android:id="@+id/start_button"
         android:layout_marginBottom="51dp"
+        android:layout_marginLeft="20dp"
         android:textStyle="bold|normal"
         android:textSize="40dp"
         android:background="#00ffffff"
