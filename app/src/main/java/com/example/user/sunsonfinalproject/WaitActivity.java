@@ -10,6 +10,7 @@ import android.widget.ImageButton;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
@@ -30,21 +31,29 @@ public class WaitActivity extends Activity {
         waitUI=new WaitUI(this);
 
         System.out.println("before writer");
-        writer1.println("out");
-        writer1.flush();
+       // writer1.println("out");
+       // writer1.flush();
         System.out.println("after writer");
 
-        try{
-            System.out.println("in try");
-            writer1.println("in");
-            writer1.flush();
-            String line = br1.readLine();
-            if(line.equals("start")){
-                Intent intent = new Intent();
-                intent.setClass(WaitActivity.this, MainActivity.class);
-                WaitActivity.this.startActivity(intent);
+
+        while(true) {
+            try {
+                //br1 = new BufferedReader(new InputStreamReader(clientSocket1.getInputStream()));
+                System.out.println("in try");
+                //         writer1.println("in");
+                //        writer1.flush();
+                //String line = ConnectActivity.br.readLine();
+                //System.out.println("xxxxxxxxxxxxxxx" + line);
+                if (br1.readLine().equals("game")) {
+                    System.out.println("xxxxxxxxxxxxxxx--iniinininininininin");
+                    Intent intent = new Intent();
+                    intent.setClass(WaitActivity.this, MainActivity.class);
+                    WaitActivity.this.startActivity(intent);
+                }
+
+            } catch (IOException e) {
             }
-        }catch(IOException e){}
+        }
        /* waitUI.next.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {

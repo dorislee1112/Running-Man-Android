@@ -57,21 +57,23 @@ public class ConnectActivity extends Activity{
                 // 取得網路輸入串流
                 br = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 System.out.println("trytry");
-                while(true){
+                while(true&&finish==0) {
                     writer.println("enter");
                     writer.flush();
                     try {
-                        String line=br.readLine();
+                        String line = br.readLine();
                         System.out.println("收到的");
                         if (line.equals("start")) {
                             Log.d("TAG", "start...");
-                            writer.println("i get start");
+                            // writer.println("i get start");
                             writer.flush();
                             Intent intent = new Intent();
                             intent.setClass(ConnectActivity.this, SelectActivity.class);
                             ConnectActivity.this.startActivity(intent);
                         }
-                    }catch (IOException e){}
+                    } catch (IOException e) {}
+
+                    finish=1;
                 }
             }catch(Exception e){
                 //當斷線時會跳到catch,可以在這裡寫上斷開連線後的處理
