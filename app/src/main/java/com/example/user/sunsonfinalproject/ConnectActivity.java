@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -41,22 +39,22 @@ public class ConnectActivity extends Activity{
         /*writer.println("enter");
         writer.flush();*/
 
-        if(finish==1){
-            writer.println("enter");
-            writer.flush();
-       try {
-            String line=this.br.readLine();
-            System.out.println("收到的");
-            if (line.equals("start")) {
-                Log.d("TAG", "start...");
-                writer.println("i get start");
-                writer.flush();
-                Intent intent = new Intent();
-                intent.setClass(ConnectActivity.this, SelectActivity.class);
-                ConnectActivity.this.startActivity(intent);
-            }
-        }catch (IOException e){}
-        }
+//        if(finish==1){
+//            writer.println("enter");
+//            writer.flush();
+//       try {
+//            String line=this.br.readLine();
+//            System.out.println("收到的");
+//            if (line.equals("start")) {
+//                Log.d("TAG", "start...");
+//                writer.println("i get start");
+//                writer.flush();
+//                Intent intent = new Intent();
+//                intent.setClass(ConnectActivity.this, SelectActivity.class);
+//                ConnectActivity.this.startActivity(intent);
+//            }
+//        }catch (IOException e){}
+//        }
              /*   connectUI.next.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,14 +75,29 @@ public class ConnectActivity extends Activity{
                 System.out.println(serverIp);
                 clientSocket = new Socket();
                 clientSocket.bind(null);
-                clientSocket.connect(new InetSocketAddress(serverIp,serverPort),100000);
+                clientSocket.connect(new InetSocketAddress(serverIp, serverPort), 100000);
                 System.out.println("Socket已經連線");
                 //取得網路輸出串流
                 writer = new PrintWriter( new OutputStreamWriter(clientSocket.getOutputStream()));
                 // 取得網路輸入串流
                 br = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 System.out.println("trytry");
-                finish=1;
+                while(true){
+                    writer.println("enter");
+                    writer.flush();
+                    try {
+                        String line=br.readLine();
+                        System.out.println("收到的");
+                        if (line.equals("start")) {
+                            Log.d("TAG", "start...");
+                            writer.println("i get start");
+                            writer.flush();
+                            Intent intent = new Intent();
+                            intent.setClass(ConnectActivity.this, SelectActivity.class);
+                            ConnectActivity.this.startActivity(intent);
+                        }
+                    }catch (IOException e){}
+                }
             }catch(Exception e){
                 //當斷線時會跳到catch,可以在這裡寫上斷開連線後的處理
                 e.printStackTrace();
