@@ -29,9 +29,15 @@ public class WaitActivity extends Activity {
         setContentView(R.layout.waiting);
         waitUI=new WaitUI(this);
 
-        
+        System.out.println("before writer");
+        writer1.println("out");
+        writer1.flush();
+        System.out.println("after writer");
 
         try{
+            System.out.println("in try");
+            writer1.println("in");
+            writer1.flush();
             String line = br1.readLine();
             if(line.equals("start")){
                 Intent intent = new Intent();
