@@ -16,10 +16,15 @@ public class SelectUI {
 
     public SelectUI(Activity activity){
        check = (ImageButton)activity.findViewById(R.id.check_button);
+        //check.requestFocus();
         up= (ImageButton)activity.findViewById(R.id.up_button);
+        //up.requestFocus();
         down= (ImageButton)activity.findViewById(R.id.down_button);
+        //down.requestFocus();
         right = (ImageButton)activity.findViewById(R.id.right_button);
+        //right.requestFocus();
         left = (ImageButton)activity.findViewById(R.id.left_button);
+        //left.requestFocus();
     }
 
 }

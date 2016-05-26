@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import java.io.BufferedReader;
+import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 
@@ -17,10 +18,10 @@ import java.net.Socket;
  */
 public class WaitActivity extends Activity {
     WaitUI waitUI;
-    private InetAddress serverIp = EntryActivity.serverIp;
-    private int serverPort=8888;
-    private Socket clientSocket = EntryActivity.clientSocket;
-    private BufferedReader br = EntryActivity.br;
+    private int serverPort1=SelectActivity.serverPort;
+    private Socket clientSocket1=SelectActivity.clientSocket;
+    private BufferedReader br1=SelectActivity.br;
+    public PrintWriter writer1=SelectActivity.writer;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
