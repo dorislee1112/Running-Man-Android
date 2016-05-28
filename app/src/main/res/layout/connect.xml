@@ -19,20 +19,6 @@
         android:background="#00ffffff"
         android:tintMode="src_atop"
         android:scaleType="fitXY"
-        android:src="@drawable/runway" />
-
-    <TextView
-        android:layout_width="300dip"
-        android:layout_height="50dip"
-        android:scaleType="centerCrop"
-        android:layout_gravity="center"
-        android:textSize = "25sp"
-        android:text="Waiting for other players1..."
-        android:layout_marginTop="207dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:src="@drawable/wait_b" />
 
 </RelativeLayout>
