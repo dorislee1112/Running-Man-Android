@@ -8,6 +8,8 @@ import android.widget.ImageButton;
  */
 public class ConnectUI {
     public ImageButton next;
+
+
     public ConnectUI(Activity activity) {
         next = (ImageButton) activity.findViewById(R.id.next_button);
     }

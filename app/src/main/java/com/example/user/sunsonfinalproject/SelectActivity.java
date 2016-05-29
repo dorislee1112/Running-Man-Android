@@ -41,7 +41,7 @@ public class SelectActivity extends Activity {
         selectUI.up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectUI.up.setImageResource(R.drawable.up_onclick);
+//                selectUI.up.setImageResource(R.drawable.up_onclick);
                 writer1.println("up");
                 writer1.flush();
             }
@@ -49,7 +49,7 @@ public class SelectActivity extends Activity {
         selectUI.down.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectUI.down.setImageResource(R.drawable.down_onclick);
+//                selectUI.down.setImageResource(R.drawable.down_onclick);
                 writer1.println("down");
                 writer1.flush();
             }
@@ -57,7 +57,7 @@ public class SelectActivity extends Activity {
         selectUI.right.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectUI.down.setImageResource(R.drawable.right_onclick);
+//                selectUI.down.setImageResource(R.drawable.right_onclick);
                 writer1.println("right");
                 writer1.flush();
             }
@@ -65,8 +65,8 @@ public class SelectActivity extends Activity {
         selectUI.left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectUI.left.setImageResource(R.drawable.left_onclick);
-                writer1.println("down");
+//                selectUI.left.setImageResource(R.drawable.left_onclick);
+                writer1.println("left");
                 writer1.flush();
             }
         });

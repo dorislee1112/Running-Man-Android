@@ -17,7 +17,7 @@
         android:maxWidth="100dp"
         android:scaleType="fitXY"
         android:src="@drawable/ic_launcher"
-        android:layout_centerVertical="true"
+        android:layout_below="@+id/imageView"
         android:layout_centerHorizontal="true" />
 
     <ImageView
@@ -25,8 +25,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
         android:src="@drawable/name"
-        android:layout_above="@+id/ic_launcher"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="47dp" />
 
     <Button
         android:layout_width="wrap_content"
@@ -41,9 +42,9 @@
         android:clickable="true"
         android:enabled="true"
         android:textColor="#b1000000"
-        android:layout_below="@+id/ic_launcher"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="52dp" />
+        android:layout_marginBottom="49dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -52,5 +53,77 @@
         android:layout_above="@+id/ic_launcher"
         android:layout_alignRight="@+id/ic_launcher"
         android:layout_alignEnd="@+id/ic_launcher" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/start_button"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="37dp"
+        android:id="@+id/linearLayout">
+
+        <EditText
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="0.25"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/editText0" />
+
+        <TextView
+            android:layout_width="5dp"
+            android:layout_height="29dp"
+            android:text="."
+            android:id="@+id/textView" />
+
+        <EditText
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="0.25"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/editText1" />
+        <TextView
+            android:layout_width="5dp"
+            android:layout_height="29dp"
+            android:text="."
+            android:id="@+id/textView1" />
+        <EditText
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="0.25"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/editText2" />
+        <TextView
+            android:layout_width="5dp"
+            android:layout_height="29dp"
+            android:text="."
+            android:id="@+id/textView2" />
+        <EditText
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="0.25"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/editText3" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Please enter IP:"
+        android:id="@+id/textView3"
+        android:layout_below="@+id/ic_launcher"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold"
+        android:typeface="monospace" />
 
 </RelativeLayout>

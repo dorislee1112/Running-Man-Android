@@ -26,11 +26,17 @@ public class ConnectActivity extends Activity{
     public static PrintWriter writer;
     Thread thread;
     int finish=0;
+    private String addr;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.connect);
         connectUI=new ConnectUI(this);
+
+        //Get IP from entry
+        Bundle bundle = this.getIntent().getExtras();
+        addr = bundle.getString("IP");
+
         System.out.println("還沒連...");
         thread=new Thread(Connection);
         System.out.println("GGGGG.....");
@@ -43,10 +49,9 @@ public class ConnectActivity extends Activity{
     }
     private Runnable Connection=new Runnable() {
         public void run() {
-            // TODO Auto-generated method stub
             try{
                 // IP為Server端
-                serverIp = InetAddress.getByName("192.168.43.63");
+                serverIp = InetAddress.getByName(addr);
                 System.out.println(serverIp);
                 clientSocket = new Socket();
                 clientSocket.bind(null);
