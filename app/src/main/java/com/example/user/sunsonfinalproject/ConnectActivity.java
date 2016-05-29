@@ -24,7 +24,7 @@ public class ConnectActivity extends Activity{
     public static Socket clientSocket;
     public static BufferedReader br;
     public static PrintWriter writer;
-    Thread thread;
+    public static Thread thread;
     int finish=0;
     private String addr;
 
@@ -37,9 +37,7 @@ public class ConnectActivity extends Activity{
         Bundle bundle = this.getIntent().getExtras();
         addr = bundle.getString("IP");
 
-        System.out.println("還沒連...");
         thread=new Thread(Connection);
-        System.out.println("GGGGG.....");
         thread.start();
         System.out.println("已經連線...");
         /*writer.println("enter");
@@ -70,8 +68,6 @@ public class ConnectActivity extends Activity{
                         System.out.println("收到的");
                         if (line.equals("start")) {
                             Log.d("TAG", "start...");
-                            // writer.println("i get start");
-                            writer.flush();
                             Intent intent = new Intent();
                             intent.setClass(ConnectActivity.this, SelectActivity.class);
                             ConnectActivity.this.startActivity(intent);
