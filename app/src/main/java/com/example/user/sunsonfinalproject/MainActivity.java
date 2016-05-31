@@ -1,6 +1,7 @@
 package com.example.user.sunsonfinalproject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -10,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 
@@ -131,6 +133,25 @@ public class MainActivity extends AppCompatActivity {
 
 
             }
+            try {
+                if (br1.readLine().equals("one")){
+                    setContentView(R.layout.one);
+                }
+                else if(br1.readLine().equals("two")){
+                    setContentView(R.layout.two);
+                }
+                else if(br1.readLine().equals("three")){
+                    setContentView(R.layout.three);
+                }
+                else if(br1.readLine().equals("four")){
+                    setContentView(R.layout.four);
+                }
+                else{}
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
         }
 
         public void onAccuracyChanged(Sensor sensor , int accuracy)
