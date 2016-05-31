@@ -1,6 +1,7 @@
 package com.example.user.sunsonfinalproject;
 
 import android.app.Activity;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 /**
@@ -8,7 +9,10 @@ import android.widget.ImageButton;
  */
 public class ConnectUI {
     public ImageButton next;
+    public Button play;
+
     public ConnectUI(Activity activity) {
         next = (ImageButton) activity.findViewById(R.id.next_button);
+        play = (Button) activity.findViewById(R.id.button);
     }
 }

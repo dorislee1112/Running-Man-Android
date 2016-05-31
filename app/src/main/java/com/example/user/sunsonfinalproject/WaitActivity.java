@@ -3,16 +3,10 @@ package com.example.user.sunsonfinalproject;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.InetAddress;
 import java.net.Socket;
 
 /**
@@ -31,6 +25,7 @@ public class WaitActivity extends Activity {
         waitUI = new WaitUI(this);
 
         System.out.println("before writer");
+<<<<<<< HEAD
         // writer1.println("out");
         // writer1.flush();
         System.out.println("after writer");
@@ -62,14 +57,36 @@ public class WaitActivity extends Activity {
             }
         };
        /* waitUI.next.setOnClickListener(new Button.OnClickListener() {
+=======
+        tmpThread();
+    }
+
+    public void tmpThread(){
+        Thread readOneTime = new Thread(new Runnable() {
+>>>>>>> origin/master
             @Override
-            public void onClick(View v) {
-                //waitUI.next.setImageResource(R.drawable.sign_onclick);
-                Intent intent = new Intent();
-                intent.setClass(WaitActivity.this, MainActivity.class);
-                WaitActivity.this.startActivity(intent);
+            public void run() {
+                try {
+                    System.out.println("in handler");
+                    String line = br1.readLine();
+                    System.out.println("here: "+ line);
+                    if (line.equals("game")) {
+                        System.out.println("xxxxxxxxxxxxxxx--iniinininininininin");
+                        Intent intent = new Intent();
+                        intent.setClass(WaitActivity.this, MainActivity.class);
+                        WaitActivity.this.startActivity(intent);
+                    }
+
+                } catch (IOException e) {
+                }
             }
+<<<<<<< HEAD
 
         });*/
 
+=======
+        });
+        readOneTime.start();
+    }
+>>>>>>> origin/master
 }
