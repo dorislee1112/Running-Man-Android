@@ -17,7 +17,7 @@
         android:maxWidth="100dp"
         android:scaleType="fitXY"
         android:src="@drawable/ic_launcher"
-        android:layout_centerVertical="true"
+        android:layout_below="@+id/imageView"
         android:layout_centerHorizontal="true" />
 
     <ImageView
@@ -25,8 +25,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
         android:src="@drawable/name"
-        android:layout_above="@+id/ic_launcher"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="37dp" />
 
     <Button
         android:layout_width="wrap_content"
@@ -41,9 +42,9 @@
         android:clickable="true"
         android:enabled="true"
         android:textColor="#b1000000"
-        android:layout_below="@+id/ic_launcher"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="52dp" />
+        android:layout_marginBottom="41dp" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -52,5 +53,47 @@
         android:layout_above="@+id/ic_launcher"
         android:layout_alignRight="@+id/ic_launcher"
         android:layout_alignEnd="@+id/ic_launcher" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText"
+        android:minWidth="200dp"
+        android:layout_below="@+id/ic_launcher"
+        android:layout_alignRight="@+id/imageView"
+        android:layout_alignEnd="@+id/imageView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="IP: "
+        android:id="@+id/textView"
+        android:textSize="30dp"
+        android:layout_above="@+id/textView2"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_alignStart="@+id/textView2"
+        android:layout_toLeftOf="@+id/editText"
+        android:layout_toStartOf="@+id/editText" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Port :"
+        android:id="@+id/textView2"
+        android:textSize="30dp"
+        android:layout_below="@+id/editText"
+        android:layout_toLeftOf="@+id/start_button"
+        android:layout_toStartOf="@+id/start_button" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText2"
+        android:minWidth="200dp"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_alignLeft="@+id/editText"
+        android:layout_alignStart="@+id/editText" />
 
 </RelativeLayout>

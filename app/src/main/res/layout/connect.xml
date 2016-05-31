@@ -19,6 +19,6 @@
         android:background="#00ffffff"
         android:tintMode="src_atop"
         android:scaleType="fitXY"
-        android:src="@drawable/wait_b" />
+        android:src="@drawable/wait_bg" />
 
 </RelativeLayout>

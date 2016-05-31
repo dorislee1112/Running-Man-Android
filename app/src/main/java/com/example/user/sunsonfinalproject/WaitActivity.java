@@ -20,40 +20,47 @@ import java.net.Socket;
  */
 public class WaitActivity extends Activity {
     WaitUI waitUI;
-    private int serverPort1=ConnectActivity.serverPort;
+    private int serverPort1=EntryActivity.serverPort;
     private Socket clientSocket1=ConnectActivity.clientSocket;
     private BufferedReader br1=ConnectActivity.br;
     private PrintWriter writer1=ConnectActivity.writer;
-
+    Thread thread;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.waiting);
-        waitUI=new WaitUI(this);
+        waitUI = new WaitUI(this);
 
         System.out.println("before writer");
-       // writer1.println("out");
-       // writer1.flush();
+        // writer1.println("out");
+        // writer1.flush();
         System.out.println("after writer");
+        thread=new Thread(Connection);
+        thread.start();
+    }
+        private Runnable Connection=new Runnable() {
+            public void run() {
+                try {
+                    while (true) {
 
+                        //br1 = new BufferedReader(new InputStreamReader(clientSocket1.getInputStream()));
+                        System.out.println("in try");
+                        //         writer1.println("in");
+                        //        writer1.flush();
+                        //String line = ConnectActivity.br.readLine();
+                        //System.out.println("xxxxxxxxxxxxxxx" + line);
+                        if (br1.readLine().equals("game")) {
+                            System.out.println("xxxxxxxxxxxxxxx--iniinininininininin");
+                            Intent intent = new Intent();
+                            intent.setClass(WaitActivity.this, MainActivity.class);
+                            WaitActivity.this.startActivity(intent);
 
-        while(true) {
-            try {
-                //br1 = new BufferedReader(new InputStreamReader(clientSocket1.getInputStream()));
-                System.out.println("in try");
-                //         writer1.println("in");
-                //        writer1.flush();
-                //String line = ConnectActivity.br.readLine();
-                //System.out.println("xxxxxxxxxxxxxxx" + line);
-                if (br1.readLine().equals("game")) {
-                    System.out.println("xxxxxxxxxxxxxxx--iniinininininininin");
-                    Intent intent = new Intent();
-                    intent.setClass(WaitActivity.this, MainActivity.class);
-                    WaitActivity.this.startActivity(intent);
+                        }
+
+                    }
+                } catch (IOException e) {
                 }
-
-            } catch (IOException e) {
             }
-        }
+        };
        /* waitUI.next.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,5 +71,5 @@ public class WaitActivity extends Activity {
             }
 
         });*/
-    }
+
 }

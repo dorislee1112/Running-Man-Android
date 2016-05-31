@@ -19,8 +19,8 @@ import java.net.Socket;
  */
 public class ConnectActivity extends Activity{
     ConnectUI connectUI;
-    public static int serverPort=8000;
-    public static InetAddress serverIp;
+    public int serverPort = EntryActivity.serverPort;
+    public  InetAddress serverIp = EntryActivity.serverIp;
     public static Socket clientSocket;
     public static BufferedReader br;
     public static PrintWriter writer;
@@ -46,7 +46,7 @@ public class ConnectActivity extends Activity{
             // TODO Auto-generated method stub
             try{
                 // IP為Server端
-                serverIp = InetAddress.getByName("192.168.43.63");
+               // serverIp = InetAddress.getByName("192.168.0.101");
                 System.out.println(serverIp);
                 clientSocket = new Socket();
                 clientSocket.bind(null);
@@ -70,6 +70,7 @@ public class ConnectActivity extends Activity{
                             Intent intent = new Intent();
                             intent.setClass(ConnectActivity.this, SelectActivity.class);
                             ConnectActivity.this.startActivity(intent);
+
                         }
                     } catch (IOException e) {}
 

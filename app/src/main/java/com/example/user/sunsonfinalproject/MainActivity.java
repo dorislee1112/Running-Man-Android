@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
    //public static InetAddress serverIp;
     //public static int serverPort=1234;
     //public static Socket clientSocket;
-   private int serverPort1=ConnectActivity.serverPort;
+   private int serverPort1=EntryActivity.serverPort;
     private Socket clientSocket1=ConnectActivity.clientSocket;
     private BufferedReader br1=ConnectActivity.br;
     private PrintWriter writer1=ConnectActivity.writer;
