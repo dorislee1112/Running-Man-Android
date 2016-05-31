@@ -26,16 +26,12 @@ public class ConnectActivity extends Activity{
     public static PrintWriter writer;
     public static Thread thread;
     int finish=0;
-    private String addr;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.connect);
         connectUI=new ConnectUI(this);
 
-        //Get IP from entry
-        Bundle bundle = this.getIntent().getExtras();
-        addr = bundle.getString("IP");
 
         thread=new Thread(Connection);
         thread.start();
@@ -49,11 +45,7 @@ public class ConnectActivity extends Activity{
         public void run() {
             try{
                 // IP為Server端
-<<<<<<< HEAD
-               // serverIp = InetAddress.getByName("192.168.0.101");
-=======
-                serverIp = InetAddress.getByName(addr);
->>>>>>> origin/master
+
                 System.out.println(serverIp);
                 clientSocket = new Socket();
                 clientSocket.bind(null);
@@ -61,6 +53,7 @@ public class ConnectActivity extends Activity{
                 System.out.println("Socket已經連線");
                 //取得網路輸出串流
                 writer = new PrintWriter( new OutputStreamWriter(clientSocket.getOutputStream()));
+
                 // 取得網路輸入串流
                 br = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 System.out.println("trytry");

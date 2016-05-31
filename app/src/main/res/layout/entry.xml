@@ -18,7 +18,9 @@
         android:scaleType="fitXY"
         android:src="@drawable/ic_launcher"
         android:layout_below="@+id/imageView"
-        android:layout_centerHorizontal="true" />
+        android:layout_toRightOf="@+id/textView2"
+        android:layout_toEndOf="@+id/textView2"
+        android:layout_marginTop="48dp" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -26,35 +28,8 @@
         android:id="@+id/imageView"
         android:src="@drawable/name"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-<<<<<<< HEAD
-        android:layout_marginTop="37dp" />
-=======
-        android:layout_marginTop="47dp" />
->>>>>>> origin/master
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Connect"
-        android:id="@+id/start_button"
-        android:textStyle="bold|normal"
-        android:textSize="40dp"
-        android:background="#00ffffff"
-        android:breakStrategy="high_quality"
-        android:capitalize="words"
-        android:clickable="true"
-        android:enabled="true"
-        android:textColor="#b1000000"
-<<<<<<< HEAD
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="41dp" />
-=======
-        android:layout_marginBottom="49dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
->>>>>>> origin/master
+        android:layout_toRightOf="@+id/textView"
+        android:layout_toEndOf="@+id/textView" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -64,7 +39,6 @@
         android:layout_alignRight="@+id/ic_launcher"
         android:layout_alignEnd="@+id/ic_launcher" />
 
-<<<<<<< HEAD
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -72,7 +46,8 @@
         android:minWidth="200dp"
         android:layout_below="@+id/ic_launcher"
         android:layout_alignRight="@+id/imageView"
-        android:layout_alignEnd="@+id/imageView" />
+        android:layout_alignEnd="@+id/imageView"
+        android:layout_marginTop="62dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -81,89 +56,20 @@
         android:text="IP: "
         android:id="@+id/textView"
         android:textSize="30dp"
-        android:layout_above="@+id/textView2"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_alignStart="@+id/textView2"
-        android:layout_toLeftOf="@+id/editText"
-        android:layout_toStartOf="@+id/editText" />
-=======
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/start_button"
+        android:layout_alignBottom="@+id/editText"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="37dp"
-        android:id="@+id/linearLayout">
-
-        <EditText
-            android:gravity="center"
-            android:maxLength="3"
-            android:layout_height="wrap_content"
-            android:layout_width="0dp"
-            android:layout_weight="0.25"
-            android:inputType="number"
-            android:ems="10"
-            android:id="@+id/editText0" />
-
-        <TextView
-            android:layout_width="5dp"
-            android:layout_height="29dp"
-            android:text="."
-            android:id="@+id/textView" />
-
-        <EditText
-            android:gravity="center"
-            android:maxLength="3"
-            android:layout_height="wrap_content"
-            android:layout_width="0dp"
-            android:layout_weight="0.25"
-            android:inputType="number"
-            android:ems="10"
-            android:id="@+id/editText1" />
-        <TextView
-            android:layout_width="5dp"
-            android:layout_height="29dp"
-            android:text="."
-            android:id="@+id/textView1" />
-        <EditText
-            android:gravity="center"
-            android:maxLength="3"
-            android:layout_height="wrap_content"
-            android:layout_width="0dp"
-            android:layout_weight="0.25"
-            android:inputType="number"
-            android:ems="10"
-            android:id="@+id/editText2" />
-        <TextView
-            android:layout_width="5dp"
-            android:layout_height="29dp"
-            android:text="."
-            android:id="@+id/textView2" />
-        <EditText
-            android:gravity="center"
-            android:maxLength="3"
-            android:layout_height="wrap_content"
-            android:layout_width="0dp"
-            android:layout_weight="0.25"
-            android:inputType="number"
-            android:ems="10"
-            android:id="@+id/editText3" />
-    </LinearLayout>
->>>>>>> origin/master
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-<<<<<<< HEAD
         android:text="Port :"
         android:id="@+id/textView2"
         android:textSize="30dp"
-        android:layout_below="@+id/editText"
-        android:layout_toLeftOf="@+id/start_button"
-        android:layout_toStartOf="@+id/start_button" />
+        android:layout_below="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -173,13 +79,15 @@
         android:layout_alignBottom="@+id/textView2"
         android:layout_alignLeft="@+id/editText"
         android:layout_alignStart="@+id/editText" />
-=======
-        android:text="Please enter IP:"
-        android:id="@+id/textView3"
-        android:layout_below="@+id/ic_launcher"
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start"
+        android:id="@+id/start_button"
+        android:layout_below="@+id/editText2"
         android:layout_centerHorizontal="true"
-        android:textStyle="bold"
-        android:typeface="monospace" />
->>>>>>> origin/master
+        android:textColorHighlight="#ffffff" />
+
 
 </RelativeLayout>

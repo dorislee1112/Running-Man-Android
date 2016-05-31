@@ -25,7 +25,6 @@ public class WaitActivity extends Activity {
         waitUI = new WaitUI(this);
 
         System.out.println("before writer");
-<<<<<<< HEAD
         // writer1.println("out");
         // writer1.flush();
         System.out.println("after writer");
@@ -84,9 +83,4 @@ public class WaitActivity extends Activity {
 
         });*/
 
-=======
-        });
-        readOneTime.start();
-    }
->>>>>>> origin/master
 }
