@@ -45,7 +45,8 @@
         android:layout_marginTop="45dp"
         android:layout_below="@+id/ic_launcher"
         android:layout_toRightOf="@+id/textView"
-        android:layout_toEndOf="@+id/textView" />
+        android:layout_toEndOf="@+id/textView"
+        android:text="172.20.10.2" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -76,7 +77,8 @@
         android:minWidth="200dp"
         android:layout_below="@+id/textView"
         android:layout_toRightOf="@+id/textView"
-        android:layout_toEndOf="@+id/textView" />
+        android:layout_toEndOf="@+id/textView"
+        android:text="8000" />
 
     <Button
         android:layout_width="wrap_content"

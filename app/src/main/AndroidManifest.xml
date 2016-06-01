@@ -18,10 +18,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!---<activity
-            android:name=".EntryActivity"
-            android:label=".activity_enrty"
-            ></activity>-->
+        <activity
+            android:name=".FirstActivity"
+            android:label=".one"
+            ></activity>
+        <activity
+            android:name=".SecondActivity"
+            android:label=".two"
+            ></activity>
     <activity
             android:name=".MainActivity"
             android:label=".activity_main"
