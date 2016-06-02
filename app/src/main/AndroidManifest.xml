@@ -26,6 +26,14 @@
             android:name=".SecondActivity"
             android:label=".two"
             ></activity>
+        <activity
+            android:name=".ThirdActivity"
+            android:label=".three"
+            ></activity>
+        <activity
+            android:name=".ForthActivity"
+            android:label=".four"
+            ></activity>
     <activity
             android:name=".MainActivity"
             android:label=".activity_main"

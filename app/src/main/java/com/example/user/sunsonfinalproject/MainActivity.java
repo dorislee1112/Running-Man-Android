@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     Thread thread;
 
     //甩動力道數度設定值 (數值越大需甩動越大力，數值越小輕輕甩動即會觸發)
-    private static final int SPEED_SHRESHOLD = 2000;
+    private static final int SPEED_SHRESHOLD = 500;
 
     //觸發間隔時間
     private static final int UPTATE_INTERVAL_TIME = 70;
@@ -75,17 +75,16 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-        thread=new Thread(Connection);
-        thread.start();
+    //    thread=new Thread(Connection);
+    //    thread.start();
 
     }
 
-    private Runnable Connection=new Runnable() {
+   /* private Runnable Connection=new Runnable() {
         public void run() {
             while(true) {
                 // TODO Auto-generated method st
                 try {
-
                     String line = br1.readLine();
                     Log.d("TAG", "已讀"+line);
                     if (line.equals("one")) {
@@ -95,16 +94,19 @@ public class MainActivity extends AppCompatActivity {
                         MainActivity.this.startActivity(intent);
                         break;
                     } else if (line.equals("two")) {
+                        System.out.println("SECOND!!");
                         Intent intent = new Intent();
                         intent.setClass(MainActivity.this, SecondActivity.class);
                         MainActivity.this.startActivity(intent);
                         break;
                     } else if (line.equals("three")) {
+                        System.out.println("THIRD!!");
                         Intent intent = new Intent();
                         intent.setClass(MainActivity.this, ThirdActivity.class);
                         MainActivity.this.startActivity(intent);
                         break;
                     } else if (line.equals("four")) {
+                        System.out.println("FORTH!!");
                         Intent intent = new Intent();
                         intent.setClass(MainActivity.this, ForthActivity.class);
                         MainActivity.this.startActivity(intent);
@@ -119,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
-    };
+    };*/
     private SensorEventListener SensorListener = new SensorEventListener()
     {
 
@@ -164,6 +166,8 @@ public class MainActivity extends AppCompatActivity {
                 else{
                     begin = 1;
                 }*/
+
+                tmpThread();
                     writer1.println(num);
                     writer1.flush();
                 while(sleep > 0 ){
@@ -186,6 +190,51 @@ public class MainActivity extends AppCompatActivity {
         mSensorManager.unregisterListener(SensorListener);
     }
 
+   public void tmpThread(){
+       Thread readOneTime = new Thread(new Runnable()  {
+           public void run() {
+               while(true) {
+                   // TODO Auto-generated method st
+                   try {
+                       String line = br1.readLine();
+                       Log.d("TAG", "已讀"+line);
+                       if (line.equals("one")) {
+                           System.out.println("FIRST!!");
+                           Intent intent = new Intent();
+                           intent.setClass(MainActivity.this, FirstActivity.class);
+                           MainActivity.this.startActivity(intent);
+                           break;
+                       } else if (line.equals("two")) {
+                           System.out.println("SECOND!!");
+                           Intent intent = new Intent();
+                           intent.setClass(MainActivity.this, SecondActivity.class);
+                           MainActivity.this.startActivity(intent);
+                           break;
+                       } else if (line.equals("three")) {
+                           System.out.println("THIRD!!");
+                           Intent intent = new Intent();
+                           intent.setClass(MainActivity.this, ThirdActivity.class);
+                           MainActivity.this.startActivity(intent);
+                           break;
+                       } else if (line.equals("four")) {
+                           System.out.println("FORTH!!");
+                           Intent intent = new Intent();
+                           intent.setClass(MainActivity.this, ForthActivity.class);
+                           MainActivity.this.startActivity(intent);
+                           break;
+                       }
+                       else if (line.equals("sleep")) {
+                           sleep = 7500000;
+                       }
+
+                   } catch (IOException e) {
+                       e.printStackTrace();
+                   }
+               }
+           }
+       });
+       readOneTime.start();
+   }
 /*    public void tmpThread(){
         Thread readOneTime = new Thread(new Runnable() {
             @Override
