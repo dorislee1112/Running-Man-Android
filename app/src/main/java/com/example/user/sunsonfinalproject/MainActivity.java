@@ -83,53 +83,36 @@ public class MainActivity extends AppCompatActivity {
     private Runnable Connection=new Runnable() {
         public void run() {
             while(true) {
-                // TODO Auto-generated method stub
+                // TODO Auto-generated method st
                 try {
-                    System.out.println(br1.readLine());
-                    if (br1.readLine().equals("one")) {
+
+                    String line = br1.readLine();
+                    Log.d("TAG", "已讀"+line);
+                    if (line.equals("one")) {
                         System.out.println("FIRST!!");
                         Intent intent = new Intent();
                         intent.setClass(MainActivity.this, FirstActivity.class);
-                        Bundle bundle = new Bundle();
-                        bundle.putFloat("num", 1);
-                        intent.putExtras(bundle);
                         MainActivity.this.startActivity(intent);
-
                         break;
-                    } else if (br1.readLine().equals("two")) {
+                    } else if (line.equals("two")) {
                         Intent intent = new Intent();
                         intent.setClass(MainActivity.this, SecondActivity.class);
-                        Bundle bundle = new Bundle();
-                        bundle.putFloat("num", 2);
-                        intent.putExtras(bundle);
                         MainActivity.this.startActivity(intent);
-                        //setContentView(R.layout.two);
-                       // img.setImageResource(R.drawable.second);
                         break;
-                    } else if (br1.readLine().equals("three")) {
+                    } else if (line.equals("three")) {
                         Intent intent = new Intent();
                         intent.setClass(MainActivity.this, ThirdActivity.class);
-                        Bundle bundle = new Bundle();
-                        bundle.putFloat("num", 3);
-                        intent.putExtras(bundle);
                         MainActivity.this.startActivity(intent);
-                        //setContentView(R.layout.three);
-                        //img.setImageResource(R.drawable.third);
                         break;
-                    } else if (br1.readLine().equals("four")) {
+                    } else if (line.equals("four")) {
                         Intent intent = new Intent();
                         intent.setClass(MainActivity.this, ForthActivity.class);
-                        Bundle bundle = new Bundle();
-                        bundle.putFloat("num", 4);
-                        intent.putExtras(bundle);
                         MainActivity.this.startActivity(intent);
-                      //  setContentView(R.layout.four);
-                        //img.setImageResource(R.drawable.fourth);
                         break;
                     }
-                    //else{
-                    //  setContentView(R.layout.activity_main);
-                    //}
+                    else if (line.equals("sleep")) {
+                        sleep = 100000000;
+                    }
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -175,12 +158,12 @@ public class MainActivity extends AppCompatActivity {
                 //達到搖一搖甩動後要做的事情
 
                 Log.d("TAG", "搖一搖中..."+num);
-                if(begin == 1) {
+             /*   if(begin == 1) {
                     tmpThread();
                 }
                 else{
                     begin = 1;
-                }
+                }*/
                     writer1.println(num);
                     writer1.flush();
                 while(sleep > 0 ){
@@ -189,27 +172,6 @@ public class MainActivity extends AppCompatActivity {
                 num++;
 
             }
-/*            try {
-                if (br1.readLine().equals("one")){
-                    setContentView(R.layout.one);
-                }
-                else if(br1.readLine().equals("two")){
-                    setContentView(R.layout.two);
-                }
-                else if(br1.readLine().equals("three")){
-                    setContentView(R.layout.three);
-                }
-                else if(br1.readLine().equals("four")){
-                    setContentView(R.layout.four);
-                }
-                else{
-                    setContentView(R.layout.activity_main);
-                }
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-*/
         }
 
         public void onAccuracyChanged(Sensor sensor , int accuracy)
@@ -224,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
         mSensorManager.unregisterListener(SensorListener);
     }
 
-    public void tmpThread(){
+/*    public void tmpThread(){
         Thread readOneTime = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -240,18 +202,6 @@ public class MainActivity extends AppCompatActivity {
         });
         readOneTime.start();
     }
-
-    protected void jumpToEnd(int num){
-        if(num==1) {
-            this.setContentView(R.layout.one);
-        }
-        else if(num==2)
-            setContentView(R.layout.two);
-        else if(num==3)
-            setContentView(R.layout.three);
-        else if(num==4)
-            setContentView(R.layout.four);
-
-    }
+*/
 
 }
