@@ -8,13 +8,17 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 
 
 public class MainActivity extends AppCompatActivity {
+    MainUI mainUI;
     private SensorManager mSensorManager;   //體感(Sensor)使用管理
     private Sensor mSensor;                 //體感(Sensor)類別
     private float mLastX;                    //x軸體感(Sensor)偏移
@@ -22,7 +26,8 @@ public class MainActivity extends AppCompatActivity {
     private float mLastZ;                    //z軸體感(Sensor)偏移
     private double mSpeed;                 //甩動力道數度
     private long mLastUpdateTime;           //觸發時間
-    int num = 0;
+    int num = 0, begin=0;
+    double sleep=0;
    /* private InetAddress serverIp = EntryActivity.serverIp;
     private Socket clientSocket = EntryActivity.clientSocket;
     private BufferedReader br =EntryActivity.br;
@@ -59,7 +64,23 @@ public class MainActivity extends AppCompatActivity {
 
         //註冊體感(Sensor)甩動觸發Listener
         mSensorManager.registerListener(SensorListener, mSensor, SensorManager.SENSOR_DELAY_GAME);
+        mainUI = new MainUI(this);
+        mainUI.bomb.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    mainUI.bomb.setImageResource(R.drawable.bomb_onclick);
+                    writer1.println("bomb");
+                    writer1.flush();
+                }
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    mainUI.bomb.setImageResource(R.drawable.bomb);
+                }
 
+                //Handle selected state change
+                return true;
+            }
+        });
     }
 
    /* private Runnable Connection=new Runnable() {
@@ -124,11 +145,18 @@ public class MainActivity extends AppCompatActivity {
                 //達到搖一搖甩動後要做的事情
 
                 Log.d("TAG", "搖一搖中..."+num);
-
+                if(begin == 1) {
+                    tmpThread();
+                }
+                else{
+                    begin = 1;
+                }
                     writer1.println(num);
                     writer1.flush();
+                while(sleep > 0 ){
+                    sleep-=0.1;
+                }
                 num++;
-
 
             }
         }
@@ -144,5 +172,23 @@ public class MainActivity extends AppCompatActivity {
         //在程式關閉時移除體感(Sensor)觸發
         mSensorManager.unregisterListener(SensorListener);
     }
+
+    public void tmpThread(){
+        Thread readOneTime = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    String line = br1.readLine();
+                    Log.d("TAG", "已讀"+line);
+                    if (line.equals("sleep")) {
+                        sleep = 100000000;
+                    }
+                } catch (IOException e) {
+                }
+            }
+        });
+        readOneTime.start();
+    }
+
 
 }
