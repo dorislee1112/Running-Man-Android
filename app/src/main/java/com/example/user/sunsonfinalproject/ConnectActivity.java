@@ -40,6 +40,7 @@ public class ConnectActivity extends Activity{
         writer.flush();*/
 
 
+
     }
     private Runnable Connection=new Runnable() {
         public void run() {

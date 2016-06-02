@@ -55,32 +55,6 @@ public class WaitActivity extends Activity {
                 }
             }
         };
-       /* waitUI.next.setOnClickListener(new Button.OnClickListener() {
-=======
-        tmpThread();
-    }
 
-    public void tmpThread(){
-        Thread readOneTime = new Thread(new Runnable() {
->>>>>>> origin/master
-            @Override
-            public void run() {
-                try {
-                    System.out.println("in handler");
-                    String line = br1.readLine();
-                    System.out.println("here: "+ line);
-                    if (line.equals("game")) {
-                        System.out.println("xxxxxxxxxxxxxxx--iniinininininininin");
-                        Intent intent = new Intent();
-                        intent.setClass(WaitActivity.this, MainActivity.class);
-                        WaitActivity.this.startActivity(intent);
-                    }
-
-                } catch (IOException e) {
-                }
-            }
-<<<<<<< HEAD
-
-        });*/
 
 }

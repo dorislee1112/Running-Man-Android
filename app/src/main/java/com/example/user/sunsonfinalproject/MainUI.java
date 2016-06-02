@@ -9,8 +9,7 @@ import android.widget.ImageButton;
 public class MainUI {
     public ImageButton bomb;
 
-    public MainUI(Activity activity){
-        bomb = (ImageButton)activity.findViewById(R.id.bomb);
+    public MainUI(Activity activity) {
+        bomb = (ImageButton) activity.findViewById(R.id.bomb);
     }
-
 }

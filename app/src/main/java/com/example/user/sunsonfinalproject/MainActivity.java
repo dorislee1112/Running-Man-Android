@@ -1,6 +1,7 @@
 package com.example.user.sunsonfinalproject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -26,33 +27,27 @@ public class MainActivity extends AppCompatActivity {
     private float mLastZ;                    //z軸體感(Sensor)偏移
     private double mSpeed;                 //甩動力道數度
     private long mLastUpdateTime;           //觸發時間
+
     int num = 0, begin=0;
     double sleep=0;
-   /* private InetAddress serverIp = EntryActivity.serverIp;
-    private Socket clientSocket = EntryActivity.clientSocket;
-    private BufferedReader br =EntryActivity.br;
-    private int serverPort =EntryActivity.serverPort;
-    */
-   //public static InetAddress serverIp;
-    //public static int serverPort=1234;
-    //public static Socket clientSocket;
-   private int serverPort1=EntryActivity.serverPort;
+    private int serverPort1=EntryActivity.serverPort;
     private Socket clientSocket1=ConnectActivity.clientSocket;
     private BufferedReader br1=ConnectActivity.br;
     private PrintWriter writer1=ConnectActivity.writer;
-    //Thread thread;
+    Thread thread;
 
     //甩動力道數度設定值 (數值越大需甩動越大力，數值越小輕輕甩動即會觸發)
-    private static final int SPEED_SHRESHOLD = 3000;
+    private static final int SPEED_SHRESHOLD = 2000;
 
     //觸發間隔時間
     private static final int UPTATE_INTERVAL_TIME = 70;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mainUI = new MainUI(this);
      //   thread=new Thread(Connection);                //賦予執行緒工作
      //   thread.start();
 
@@ -76,37 +71,72 @@ public class MainActivity extends AppCompatActivity {
                 if (event.getAction() == MotionEvent.ACTION_UP) {
                     mainUI.bomb.setImageResource(R.drawable.bomb);
                 }
-
                 //Handle selected state change
                 return true;
             }
         });
+        thread=new Thread(Connection);
+        thread.start();
+
     }
 
-   /* private Runnable Connection=new Runnable() {
+    private Runnable Connection=new Runnable() {
         public void run() {
-            // TODO Auto-generated method stub
-            try{
-                // IP為Server端
-                InetAddress serverIp = InetAddress.getByName("192.168.43.63");
-                System.out.println(serverIp);
-                clientSocket = new Socket();
-                clientSocket.bind(null);
-                clientSocket.connect(new InetSocketAddress(serverIp,serverPort),10000);
-                System.out.println("Socket已經連線");
-                //取得網路輸出串流
-                writer = new PrintWriter( new OutputStreamWriter(clientSocket.getOutputStream()));
-                // 取得網路輸入串流
-                br = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            while(true) {
+                // TODO Auto-generated method stub
+                try {
+                    System.out.println(br1.readLine());
+                    if (br1.readLine().equals("one")) {
+                        System.out.println("FIRST!!");
+                        Intent intent = new Intent();
+                        intent.setClass(MainActivity.this, FirstActivity.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putFloat("num", 1);
+                        intent.putExtras(bundle);
+                        MainActivity.this.startActivity(intent);
 
-            }catch(Exception e){
-                //當斷線時會跳到catch,可以在這裡寫上斷開連線後的處理
-                e.printStackTrace();
-                Log.e("text","Socket連線="+e.toString());
-                finish();    //當斷線時自動關閉房間
+                        break;
+                    } else if (br1.readLine().equals("two")) {
+                        Intent intent = new Intent();
+                        intent.setClass(MainActivity.this, SecondActivity.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putFloat("num", 2);
+                        intent.putExtras(bundle);
+                        MainActivity.this.startActivity(intent);
+                        //setContentView(R.layout.two);
+                       // img.setImageResource(R.drawable.second);
+                        break;
+                    } else if (br1.readLine().equals("three")) {
+                        Intent intent = new Intent();
+                        intent.setClass(MainActivity.this, ThirdActivity.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putFloat("num", 3);
+                        intent.putExtras(bundle);
+                        MainActivity.this.startActivity(intent);
+                        //setContentView(R.layout.three);
+                        //img.setImageResource(R.drawable.third);
+                        break;
+                    } else if (br1.readLine().equals("four")) {
+                        Intent intent = new Intent();
+                        intent.setClass(MainActivity.this, ForthActivity.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putFloat("num", 4);
+                        intent.putExtras(bundle);
+                        MainActivity.this.startActivity(intent);
+                      //  setContentView(R.layout.four);
+                        //img.setImageResource(R.drawable.fourth);
+                        break;
+                    }
+                    //else{
+                    //  setContentView(R.layout.activity_main);
+                    //}
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
-    };*/
+    };
     private SensorEventListener SensorListener = new SensorEventListener()
     {
 
@@ -159,6 +189,27 @@ public class MainActivity extends AppCompatActivity {
                 num++;
 
             }
+/*            try {
+                if (br1.readLine().equals("one")){
+                    setContentView(R.layout.one);
+                }
+                else if(br1.readLine().equals("two")){
+                    setContentView(R.layout.two);
+                }
+                else if(br1.readLine().equals("three")){
+                    setContentView(R.layout.three);
+                }
+                else if(br1.readLine().equals("four")){
+                    setContentView(R.layout.four);
+                }
+                else{
+                    setContentView(R.layout.activity_main);
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+*/
         }
 
         public void onAccuracyChanged(Sensor sensor , int accuracy)
@@ -190,5 +241,17 @@ public class MainActivity extends AppCompatActivity {
         readOneTime.start();
     }
 
+    protected void jumpToEnd(int num){
+        if(num==1) {
+            this.setContentView(R.layout.one);
+        }
+        else if(num==2)
+            setContentView(R.layout.two);
+        else if(num==3)
+            setContentView(R.layout.three);
+        else if(num==4)
+            setContentView(R.layout.four);
+
+    }
 
 }
