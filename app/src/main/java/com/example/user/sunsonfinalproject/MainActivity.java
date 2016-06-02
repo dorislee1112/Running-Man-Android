@@ -90,12 +90,8 @@ public class MainActivity extends AppCompatActivity {
                         System.out.println("FIRST!!");
                         Intent intent = new Intent();
                         intent.setClass(MainActivity.this, FirstActivity.class);
-                        Bundle bundle = new Bundle();
-                        bundle.putFloat("num", 1);
-                        intent.putExtras(bundle);
                         MainActivity.this.startActivity(intent);
 
-                        break;
                     } else if (br1.readLine().equals("two")) {
                         Intent intent = new Intent();
                         intent.setClass(MainActivity.this, SecondActivity.class);
