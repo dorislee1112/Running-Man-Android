@@ -23,6 +23,7 @@ public class WaitActivity extends Activity {
     public int thread_again=0;
     Thread thread;
     protected void onCreate(Bundle savedInstanceState) {
+        AppManager.getAppManager().addActivity(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.waiting);
         waitUI = new WaitUI(this);

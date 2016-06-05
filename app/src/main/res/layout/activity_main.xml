@@ -21,6 +21,18 @@
         android:layout_alignParentStart="true"
         android:src="@drawable/shake_bg" />
 
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/math_bg"
+        android:adjustViewBounds="false"
+        android:accessibilityLiveRegion="polite"
+        android:layout_alignWithParentIfMissing="false"
+        android:background="#00ffffff"
+        android:tintMode="src_atop"
+        android:scaleType="fitXY"
+        android:src="@drawable/math" />
+
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="150dp"
@@ -59,17 +71,6 @@
         android:layout_marginLeft="-8dp"
         android:layout_toRightOf="@+id/bomb"
         android:layout_toEndOf="@+id/bomb" />
-    <ImageButton
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/math_bg"
-        android:adjustViewBounds="false"
-        android:accessibilityLiveRegion="polite"
-        android:layout_alignWithParentIfMissing="false"
-        android:background="#00ffffff"
-        android:tintMode="src_atop"
-        android:scaleType="fitXY"
-        android:src="@drawable/math" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -85,18 +86,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/ans"
+        android:hint = "Answer"
         android:layout_centerHorizontal="true"
-        android:text="Answer"
+        android:hint="Answer"
         android:textSize="25dp"
-        android:layout_centerVertical="true" />
+        android:layout_centerVertical="true"
+        android:minWidth="100dp" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Submit"
         android:id="@+id/send"
-        android:layout_marginTop="62dp"
-        android:layout_below="@+id/ans"
+        android:layout_alignTop="@+id/bomb"
         android:layout_centerHorizontal="true" />
 
 
