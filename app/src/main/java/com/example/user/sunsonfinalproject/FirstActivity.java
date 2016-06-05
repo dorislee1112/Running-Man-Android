@@ -1,6 +1,8 @@
 package com.example.user.sunsonfinalproject;
 
 import android.app.Activity;
+import android.app.ActivityManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -17,6 +19,7 @@ import java.io.PrintWriter;
 public class FirstActivity extends Activity {
 
     public ImageButton restart;
+    public ImageButton exit;
     private BufferedReader br1=ConnectActivity.br;
     private PrintWriter writer1=ConnectActivity.writer;
 
@@ -31,9 +34,10 @@ public class FirstActivity extends Activity {
                 intent.setClass(FirstActivity.this, WaitActivity.class);
                 FirstActivity.this.startActivity(intent);
                 System.out.println("--------------------again---------------------------");
-                WaitActivity.play_again=1;
+                WaitActivity.play_again = 1;
             }
         });
+
     }
 }
 
