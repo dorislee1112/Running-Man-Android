@@ -3,7 +3,6 @@ package com.example.user.sunsonfinalproject;
 import android.app.Activity;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 /**
  * Created by chanhua on 16/5/12.
@@ -15,7 +14,6 @@ public class SelectUI {
     public ImageButton left;
     public ImageButton right;
     public ImageView selectColor;
-    public TextView playerIndex;
 
     public SelectUI(Activity activity){
        check = (ImageButton)activity.findViewById(R.id.check_button);
@@ -29,7 +27,6 @@ public class SelectUI {
         left = (ImageButton)activity.findViewById(R.id.left_button);
         //left.requestFocus();
         selectColor = (ImageView)activity.findViewById(R.id.selectColor);
-        playerIndex = (TextView)activity.findViewById(R.id.textView3);
     }
 
 }

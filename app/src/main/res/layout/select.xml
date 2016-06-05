@@ -107,23 +107,4 @@
         android:focusable="true"
         android:focusableInTouchMode="true"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/textView3"
-        android:layout_above="@+id/up_button"
-        android:layout_alignLeft="@+id/selectColor"
-        android:layout_alignStart="@+id/selectColor"
-        android:layout_marginBottom="35dp"
-        android:layout_alignRight="@+id/selectColor"
-        android:layout_alignEnd="@+id/selectColor"
-        android:textColor="#ffffff"
-        android:textAlignment="center"
-        android:typeface="monospace"
-        android:text="HIHI"
-        android:textStyle="bold"
-        android:textSize="20dp"
-        android:visibility="gone" />
-
 </RelativeLayout>

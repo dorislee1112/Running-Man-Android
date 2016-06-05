@@ -7,34 +7,25 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.provider.CalendarContract;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.InetAddress;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.util.Random;
-import android.os.Message;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.os.Handler;
-import org.w3c.dom.Text;
 
 
 public class MainActivity extends AppCompatActivity {
     private final int stop=1,run=0;
     MainUI mainUI;
-    private SensorManager mSensorManager;   //體感(Sensor)使用管理
+    public SensorManager mSensorManager;   //體感(Sensor)使用管理
     private Sensor mSensor;                 //體感(Sensor)類別
     private float mLastX;                    //x軸體感(Sensor)偏移
     private float mLastY;                    //y軸體感(Sensor)偏移
@@ -93,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
 
         //註冊體感(Sensor)甩動觸發Listener
         mSensorManager.registerListener(SensorListener, mSensor, SensorManager.SENSOR_DELAY_GAME);
+
         mainUI = new MainUI(this);
         mainUI.bomb.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -112,55 +104,64 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
+    public void pauseSensor(){
+        mSensorManager.unregisterListener(SensorListener);
+    }
 
     private SensorEventListener SensorListener = new SensorEventListener() {
 
         public void onSensorChanged(SensorEvent mSensorEvent) {
-            //當前觸發時間
-            long mCurrentUpdateTime = System.currentTimeMillis();
+//            if (ctrl == 1) {
 
-            //觸發間隔時間 = 當前觸發時間 - 上次觸發時間
-            long mTimeInterval = mCurrentUpdateTime - mLastUpdateTime;
+                //當前觸發時間
+                long mCurrentUpdateTime = System.currentTimeMillis();
 
-            //若觸發間隔時間< 70 則return;
-            if (mTimeInterval < UPTATE_INTERVAL_TIME) return;
+                //觸發間隔時間 = 當前觸發時間 - 上次觸發時間
+                long mTimeInterval = mCurrentUpdateTime - mLastUpdateTime;
 
-            mLastUpdateTime = mCurrentUpdateTime;
+                //若觸發間隔時間< 70 則return;
+                if (mTimeInterval < UPTATE_INTERVAL_TIME) return;
 
-            //取得xyz體感(Sensor)偏移
-            float x = mSensorEvent.values[0];
-            float y = mSensorEvent.values[1];
-            float z = mSensorEvent.values[2];
+                mLastUpdateTime = mCurrentUpdateTime;
 
-            //甩動偏移速度 = xyz體感(Sensor)偏移 - 上次xyz體感(Sensor)偏移
-            float mDeltaX = x - mLastX;
-            float mDeltaY = y - mLastY;
-            float mDeltaZ = z - mLastZ;
+                //取得xyz體感(Sensor)偏移
+                float x = mSensorEvent.values[0];
+                float y = mSensorEvent.values[1];
+                float z = mSensorEvent.values[2];
 
-            mLastX = x;
-            mLastY = y;
-            mLastZ = z;
+                //甩動偏移速度 = xyz體感(Sensor)偏移 - 上次xyz體感(Sensor)偏移
+                float mDeltaX = x - mLastX;
+                float mDeltaY = y - mLastY;
+                float mDeltaZ = z - mLastZ;
 
-            //體感(Sensor)甩動力道速度公式
-            mSpeed = Math.sqrt(mDeltaX * mDeltaX + mDeltaY * mDeltaY + mDeltaZ * mDeltaZ) / mTimeInterval * 10000;
-            //若體感(Sensor)甩動速度大於等於甩動設定值則進入 (達到甩動力道及速度)
-            if (mSpeed >= SPEED_SHRESHOLD) {
-                //達到搖一搖甩動後要做的事情
+                mLastX = x;
+                mLastY = y;
+                mLastZ = z;
 
-                Log.d("TAG", "搖一搖中..."+num);
+                //體感(Sensor)甩動力道速度公式
+                mSpeed = Math.sqrt(mDeltaX * mDeltaX + mDeltaY * mDeltaY + mDeltaZ * mDeltaZ) / mTimeInterval * 10000;
+                //若體感(Sensor)甩動速度大於等於甩動設定值則進入 (達到甩動力道及速度)
+                if (mSpeed >= SPEED_SHRESHOLD) {
+                    //達到搖一搖甩動後要做的事情
+
+                    Log.d("TAG", "搖一搖中..." + num);
 
 
-                tmpThread();
-                writer1.println(num);
-                writer1.flush();
-                while (sleep > 0) {
-                    sleep -= 0.1;
+                    tmpThread();
+                    writer1.println(num);
+                    writer1.flush();
+
+                    while (sleep > 0) {
+                        sleep -= 0.1;
+                    }
+                    if (pause == 0)
+                        num++;
+
                 }
-                if(pause==0)
-                    num++;
-
-            }
+//            }
+//            else{
+//
+//            }
         }
 
         public void onAccuracyChanged(Sensor sensor, int accuracy) {
@@ -177,35 +178,43 @@ public class MainActivity extends AppCompatActivity {
    public void tmpThread(){
        Thread readOneTime = new Thread(new Runnable()  {
            public void run() {
-               while(true) {
+               Log.d("TAG", "in Main ctrl: " + ctrl);
+//               while(ctrl == 1) {
                    // TODO Auto-generated method st
                    try {
+//                       Log.d("TAG", "in Main tmpThread");
                        String line = br1.readLine();
-                       Log.d("TAG", "已讀"+line);
+                       Log.d("TAG", "in main已讀"+line);
                        if (line.equals("one")) {
                            System.out.println("FIRST!!");
                            Intent intent = new Intent();
                            intent.setClass(MainActivity.this, FirstActivity.class);
                            MainActivity.this.startActivity(intent);
-                           break;
+                           Log.d("Tag", "in main get one");
+                           MainActivity.this.onStop();
+                           Log.d("Tag", "in main get one stop");
+                           /*break;*/
                        } else if (line.equals("two")) {
                            System.out.println("SECOND!!");
                            Intent intent = new Intent();
                            intent.setClass(MainActivity.this, SecondActivity.class);
                            MainActivity.this.startActivity(intent);
-                           break;
+                           finish();
+//                           break;
                        } else if (line.equals("three")) {
                            System.out.println("THIRD!!");
                            Intent intent = new Intent();
                            intent.setClass(MainActivity.this, ThirdActivity.class);
                            MainActivity.this.startActivity(intent);
-                           break;
+                           finish();
+//                           break;
                        } else if (line.equals("four")) {
                            System.out.println("FORTH!!");
                            Intent intent = new Intent();
                            intent.setClass(MainActivity.this, ForthActivity.class);
                            MainActivity.this.startActivity(intent);
-                           break;
+                           finish();
+//                           break;
                        }
                        else if (line.equals("sleep")) {
                         System.out.println("in sleep");
@@ -275,17 +284,20 @@ public class MainActivity extends AppCompatActivity {
                        Message msg = new Message();
                        bombMessageHandler.sendMessage(msg);
 
-
-                        System.out.println("!!!!!!!!!!control: "+ctrl);
+                       Log.d("end", "in main end fo run");
+                       System.out.println("!!!!!!!!!!control: " + ctrl);
 
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
 
                }
-           }
+//           }
        });
-       readOneTime.start();
+       if(ctrl == 1) {
+           readOneTime.start();
+           Log.d("end", "in main thread start");
+       }
    }
 
 

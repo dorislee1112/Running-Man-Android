@@ -3,6 +3,7 @@ package com.example.user.sunsonfinalproject;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -47,13 +48,17 @@ public class WaitActivity extends Activity {
                         //        writer1.flush();
                         //String line = ConnectActivity.br.readLine();
                         //System.out.println("xxxxxxxxxxxxxxx" + line);
+                        Log.d("Tag", "in runnable: " + play_again);
                         if(play_again==1){
                             writer1.println("again");
                             writer1.flush();
                             play_again=0;
+//                            MainActivity.pauseSensor();
+                            Log.d("Tag", "in Wait: again");
                         }
+                        Log.d("Tag", "in Wait: again2");
                         String line=br1.readLine();
-                        System.out.println("!-----------------------------------!"+line);
+                        System.out.println("in wait:!-----------------------------------!"+line);
                         if (line.equals("game")) {
                             System.out.println("xxxxxxxxxxxxxxx--iniinininininininin");
                             MainActivity.ctrl=1;

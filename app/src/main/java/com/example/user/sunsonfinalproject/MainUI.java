@@ -7,9 +7,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-import android.widget.TextView;
-
 /**
  * Created by chanhua on 16/5/12.
  */

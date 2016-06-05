@@ -29,11 +29,7 @@ public class SelectActivity extends Activity {
 
         Bundle bundle = this.getIntent().getExtras();
         String color = bundle.getString("color");
-        String playerIndex = bundle.getString("playerIndex");
-//        selectUI.selectColor.setBackgroundColor(Color.parseColor(color));
         selectUI.selectColor.setColorFilter(Color.parseColor(color), Mode.SRC_ATOP);
-//        selectUI.playerIndex.setText(playerIndex + "p");
-//        selectUI.playerIndex.setTextColor(Color.parseColor(color));
 
     System.out.println("OK");
         selectUI.check.setOnFocusChangeListener(new View.OnFocusChangeListener() {
