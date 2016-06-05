@@ -21,20 +21,6 @@
         android:layout_alignParentStart="true"
         android:src="@drawable/select_bg" />
 
-    <ImageView
-        android:id="@+id/selectColor"
-        android:shape="oval"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:cropToPadding="false"
-        android:textAlignment="center"
-        android:src="@drawable/circle"
-        android:visibility="visible"
-        android:layout_marginBottom="40dp"
-        android:layout_above="@+id/up_button"
-        android:layout_alignLeft="@+id/up_button"
-        android:layout_alignStart="@+id/up_button" />
-
     <ImageButton
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -106,5 +92,15 @@
         android:src="@drawable/sign"
         android:focusable="true"
         android:focusableInTouchMode="true"/>
+
+    <ImageView
+        android:id="@+id/selectColor"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:textAlignment="center"
+        android:src="@drawable/circle"
+        android:layout_above="@+id/up_button"
+        android:layout_alignLeft="@+id/up_button"
+        android:layout_alignStart="@+id/up_button" />
 
 </RelativeLayout>

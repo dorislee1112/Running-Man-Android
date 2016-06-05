@@ -3,12 +3,13 @@ package com.example.user.sunsonfinalproject;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
-import android.graphics.PorterDuff.Mode;
+
 import java.io.BufferedReader;
 import java.io.PrintWriter;
 import java.net.Socket;
@@ -32,7 +33,7 @@ public class SelectActivity extends Activity {
         Bundle bundle = this.getIntent().getExtras();
         String color = bundle.getString("color");
         String index = bundle.getString("playerIndex") ;
-        selectUI.selectColor.setColorFilter(Color.parseColor(color), Mode.SRC_ATOP);
+        selectUI.selectColor.setColorFilter(Color.parseColor(color), PorterDuff.Mode.MULTIPLY);
         Log.d("tag", color + " " + index);
 
     System.out.println("OK");
