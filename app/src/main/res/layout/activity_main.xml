@@ -88,7 +88,6 @@
         android:id="@+id/ans"
         android:hint = "Answer"
         android:layout_centerHorizontal="true"
-        android:hint="Answer"
         android:textSize="25dp"
         android:layout_centerVertical="true"
         android:minWidth="100dp" />
