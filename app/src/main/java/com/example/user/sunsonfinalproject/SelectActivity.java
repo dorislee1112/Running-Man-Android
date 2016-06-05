@@ -22,6 +22,7 @@ public class SelectActivity extends Activity {
     private PrintWriter writer1=ConnectActivity.writer;
     
     protected void onCreate(Bundle savedInstanceState) {
+        AppManager.getAppManager().addActivity(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.select);
         selectUI = new SelectUI(this);

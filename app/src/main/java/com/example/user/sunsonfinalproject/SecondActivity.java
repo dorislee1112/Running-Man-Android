@@ -14,11 +14,12 @@ import java.io.PrintWriter;
  */
 public class SecondActivity extends Activity {
 
-    public ImageButton restart;
+    public ImageButton restart,exit;
     private BufferedReader br1=ConnectActivity.br;
     private PrintWriter writer1=ConnectActivity.writer;
 
     protected void onCreate(Bundle savedInstanceState) {
+        AppManager.getAppManager().addActivity(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.two);
 
@@ -30,7 +31,13 @@ public class SecondActivity extends Activity {
                 Intent intent = new Intent();
                 intent.setClass(SecondActivity.this, WaitActivity.class);
                 SecondActivity.this.startActivity(intent);
-                WaitActivity.play_again=1;
+                WaitActivity.play_again = 1;
+            }
+        });
+        exit = (ImageButton)this.findViewById(R.id.exit);
+        this.exit.setOnClickListener(new ImageButton.OnClickListener() {
+            public void onClick(View v) {
+                AppManager.getAppManager().AppExit(SecondActivity.this);
             }
         });
     }

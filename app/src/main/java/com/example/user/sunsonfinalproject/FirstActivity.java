@@ -24,6 +24,7 @@ public class FirstActivity extends Activity {
     private PrintWriter writer1=ConnectActivity.writer;
 
     protected void onCreate(Bundle savedInstanceState) {
+        AppManager.getAppManager().addActivity(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.one);
 
@@ -35,6 +36,12 @@ public class FirstActivity extends Activity {
                 FirstActivity.this.startActivity(intent);
                 System.out.println("--------------------again---------------------------");
                 WaitActivity.play_again = 1;
+            }
+        });
+        exit = (ImageButton)this.findViewById(R.id.exit);
+        this.exit.setOnClickListener(new ImageButton.OnClickListener() {
+            public void onClick(View v) {
+                AppManager.getAppManager().AppExit(FirstActivity.this);
             }
         });
 

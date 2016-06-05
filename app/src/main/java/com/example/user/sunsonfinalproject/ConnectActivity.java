@@ -28,6 +28,7 @@ public class ConnectActivity extends Activity{
     int finish=0;
 
     protected void onCreate(Bundle savedInstanceState) {
+        AppManager.getAppManager().addActivity(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.connect);
         connectUI=new ConnectUI(this);

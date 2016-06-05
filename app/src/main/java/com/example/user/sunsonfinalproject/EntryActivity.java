@@ -24,6 +24,7 @@ public class EntryActivity extends Activity {
     public static InetAddress serverIp;
 
     protected void onCreate(Bundle savedInstanceState) {
+        AppManager.getAppManager().addActivity(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.entry);
 

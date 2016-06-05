@@ -14,11 +14,12 @@ import java.io.PrintWriter;
  */
 public class ForthActivity extends Activity {
 
-    public ImageButton restart;
+    public ImageButton restart,exit;
     private BufferedReader br1=ConnectActivity.br;
     private PrintWriter writer1=ConnectActivity.writer;
 
     protected void onCreate(Bundle savedInstanceState) {
+        AppManager.getAppManager().addActivity(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.four);
 
@@ -30,7 +31,13 @@ public class ForthActivity extends Activity {
                 Intent intent = new Intent();
                 intent.setClass(ForthActivity.this, WaitActivity.class);
                 ForthActivity.this.startActivity(intent);
-                WaitActivity.play_again=1;
+                WaitActivity.play_again = 1;
+            }
+        });
+        exit = (ImageButton)this.findViewById(R.id.exit);
+        this.exit.setOnClickListener(new ImageButton.OnClickListener() {
+            public void onClick(View v) {
+                AppManager.getAppManager().AppExit(ForthActivity.this);
             }
         });
     }
