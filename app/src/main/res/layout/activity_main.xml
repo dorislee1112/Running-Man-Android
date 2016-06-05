@@ -59,7 +59,20 @@
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:layout_below="@+id/imageView2"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignLeft="@+id/imageView2"
+        android:layout_alignStart="@+id/imageView2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="x2"
+        android:id="@+id/bomb_num"
+        android:textSize="48dp"
+        android:textColor="#000000"
+        android:layout_alignBottom="@+id/bomb"
+        android:layout_marginLeft="-8dp"
+        android:layout_toRightOf="@+id/bomb"
+        android:layout_toEndOf="@+id/bomb" />
 
     <TextView
         android:layout_width="wrap_content"
