@@ -30,9 +30,10 @@ public class MainActivity extends AppCompatActivity {
     private float mLastZ;                    //z軸體感(Sensor)偏移
     private double mSpeed;                 //甩動力道數度
     private long mLastUpdateTime;           //觸發時間
+    public static int ctrl=0;
 
     int bomb_left = 2;
-
+    int play_tag=0;
     int num = 0, begin = 0;
     double sleep = 0;
     private int serverPort1 = EntryActivity.serverPort;
@@ -145,34 +146,43 @@ public class MainActivity extends AppCompatActivity {
     public void tmpThread() {
         Thread readOneTime = new Thread(new Runnable() {
             public void run() {
-                while (true) {
+                while (ctrl==1) {
                     // TODO Auto-generated method st
                     try {
                         String line = br1.readLine();
                         Log.d("TAG", "已讀" + line);
+                        System.out.println(line);
                         if (line.equals("one")) {
+                            ctrl=0;
                             System.out.println("FIRST!!");
                             Intent intent = new Intent();
                             intent.setClass(MainActivity.this, FirstActivity.class);
                             MainActivity.this.startActivity(intent);
+                            play_tag=1;
                             break;
                         } else if (line.equals("two")) {
+                            ctrl=0;
                             System.out.println("SECOND!!");
                             Intent intent = new Intent();
                             intent.setClass(MainActivity.this, SecondActivity.class);
                             MainActivity.this.startActivity(intent);
+                            play_tag=1;
                             break;
                         } else if (line.equals("three")) {
+                            ctrl=0;
                             System.out.println("THIRD!!");
                             Intent intent = new Intent();
                             intent.setClass(MainActivity.this, ThirdActivity.class);
                             MainActivity.this.startActivity(intent);
+                            play_tag=1;
                             break;
                         } else if (line.equals("four")) {
+                            ctrl=0;
                             System.out.println("FORTH!!");
                             Intent intent = new Intent();
                             intent.setClass(MainActivity.this, ForthActivity.class);
                             MainActivity.this.startActivity(intent);
+                            play_tag=1;
                             break;
                         } else if (line.equals("sleep")) {
                             sleep = 8000000;
@@ -185,6 +195,8 @@ public class MainActivity extends AppCompatActivity {
                        // Thread.sleep(100);
                         Message msg = new Message();
                         uiMessageHandler.sendMessage(msg);
+
+                        System.out.println("!!!!!!!!!!control: "+ctrl);
 
                     } catch (Exception e) {
                         e.printStackTrace();
