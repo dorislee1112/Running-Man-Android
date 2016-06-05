@@ -59,5 +59,45 @@
         android:layout_marginLeft="-8dp"
         android:layout_toRightOf="@+id/bomb"
         android:layout_toEndOf="@+id/bomb" />
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/math_bg"
+        android:adjustViewBounds="false"
+        android:accessibilityLiveRegion="polite"
+        android:layout_alignWithParentIfMissing="false"
+        android:background="#00ffffff"
+        android:tintMode="src_atop"
+        android:scaleType="fitXY"
+        android:src="@drawable/math" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="math question"
+        android:id="@+id/question"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="155dp"
+        android:textSize="40dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ans"
+        android:layout_centerHorizontal="true"
+        android:text="Answer"
+        android:textSize="25dp"
+        android:layout_centerVertical="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:id="@+id/send"
+        android:layout_marginTop="62dp"
+        android:layout_below="@+id/ans"
+        android:layout_centerHorizontal="true" />
+
 
 </RelativeLayout>
