@@ -223,13 +223,13 @@ public class MainActivity extends AppCompatActivity {
                            operindex = rand.nextInt(4);
                            if (operindex == 0) {
                                oper = "+";
-                               num1 = rand.nextInt(400) + 200;
-                               num2 = rand.nextInt(400) + 200;
+                               num1 = rand.nextInt(200) + 200;
+                               num2 = rand.nextInt(200) + 200;
                                ans = num1 + num2;
                            } else if (operindex == 1) {
                                oper = "-";
-                               num1 = rand.nextInt(100) + 150;
-                               num2 = rand.nextInt(50) + 100;
+                               num1 = rand.nextInt(100) + 100;
+                               num2 = rand.nextInt(50) + 50;
                                ans = num1 - num2;
                            } else if (operindex == 2) {
                                oper = "*";
@@ -238,8 +238,8 @@ public class MainActivity extends AppCompatActivity {
                                ans = num1 * num2;
                            } else {
                                oper = "/";
-                               num2 =rand.nextInt(20);
-                               num1 = num2 * rand.nextInt(20);
+                               num2 =rand.nextInt(100);
+                               num1 = num2 * rand.nextInt(10);
 
                                ans = num1 / num2;
                            }
