@@ -65,9 +65,15 @@ public class ConnectActivity extends Activity{
                         String line = br.readLine();
                         System.out.println("收到的");
                         if (line.equals("start")) {
-                            Log.d("TAG", "start...");
+                            String selectColor = br.readLine();
+                            String playerIndex = br.readLine();
+                            Log.d("TAG", "get color:" + selectColor + " " + playerIndex);
                             Intent intent = new Intent();
                             intent.setClass(ConnectActivity.this, SelectActivity.class);
+                            Bundle bundle = new Bundle();
+                            bundle.putString("color", selectColor);
+                            bundle.putString("playerIndex", playerIndex);
+                            intent.putExtras(bundle);
                             ConnectActivity.this.startActivity(intent);
 
                         }

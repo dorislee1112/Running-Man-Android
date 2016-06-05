@@ -22,11 +22,18 @@
         android:src="@drawable/select_bg" />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="120dp" />
+        android:id="@+id/selectColor"
+        android:shape="oval"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:cropToPadding="false"
+        android:textAlignment="center"
+        android:src="@drawable/circle"
+        android:visibility="visible"
+        android:layout_marginBottom="40dp"
+        android:layout_above="@+id/up_button"
+        android:layout_alignLeft="@+id/up_button"
+        android:layout_alignStart="@+id/up_button" />
 
     <ImageButton
         android:layout_width="100dp"
@@ -99,5 +106,24 @@
         android:src="@drawable/sign"
         android:focusable="true"
         android:focusableInTouchMode="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/textView3"
+        android:layout_above="@+id/up_button"
+        android:layout_alignLeft="@+id/selectColor"
+        android:layout_alignStart="@+id/selectColor"
+        android:layout_marginBottom="35dp"
+        android:layout_alignRight="@+id/selectColor"
+        android:layout_alignEnd="@+id/selectColor"
+        android:textColor="#ffffff"
+        android:textAlignment="center"
+        android:typeface="monospace"
+        android:text="HIHI"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:visibility="gone" />
 
 </RelativeLayout>

@@ -2,14 +2,15 @@ package com.example.user.sunsonfinalproject;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
-
+import android.view.View.OnTouchListener;
+import android.graphics.PorterDuff.Mode;
 import java.io.BufferedReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import android.view.View.OnTouchListener;
 
 /**
  * Created by chanhua on 16/5/12.
@@ -25,6 +26,15 @@ public class SelectActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.select);
         selectUI = new SelectUI(this);
+
+        Bundle bundle = this.getIntent().getExtras();
+        String color = bundle.getString("color");
+        String playerIndex = bundle.getString("playerIndex");
+//        selectUI.selectColor.setBackgroundColor(Color.parseColor(color));
+        selectUI.selectColor.setColorFilter(Color.parseColor(color), Mode.SRC_ATOP);
+//        selectUI.playerIndex.setText(playerIndex + "p");
+//        selectUI.playerIndex.setTextColor(Color.parseColor(color));
+
     System.out.println("OK");
         selectUI.check.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override

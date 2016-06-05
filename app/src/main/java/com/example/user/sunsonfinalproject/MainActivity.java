@@ -93,13 +93,8 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent = new Intent();
                         intent.setClass(MainActivity.this, FirstActivity.class);
                         MainActivity.this.startActivity(intent);
-<<<<<<< HEAD
-
-                    } else if (br1.readLine().equals("two")) {
-=======
                         break;
                     } else if (line.equals("two")) {
->>>>>>> 75f9ceccf1a0d6013c81da4afb6159b71f091dfb
                         Intent intent = new Intent();
                         intent.setClass(MainActivity.this, SecondActivity.class);
                         MainActivity.this.startActivity(intent);
