@@ -41,9 +41,13 @@ public class MainActivity extends AppCompatActivity {
     private float mLastZ;                    //z軸體感(Sensor)偏移
     private double mSpeed;                 //甩動力道數度
     private long mLastUpdateTime;           //觸發時間
+    public static int ctrl=0;
 
-    int bomb_left=2;
-    int play_tag = 0;
+
+    int bomb_left = 2;
+    int play_tag=0;
+
+
     Random rand;
     String oper;
     int num1,num2,operindex;
@@ -266,13 +270,18 @@ public class MainActivity extends AppCompatActivity {
                            System.out.println(bomb_left);
                        }
 
+
                        // Thread.sleep(100);
                        Message msg = new Message();
                        bombMessageHandler.sendMessage(msg);
 
-                   } catch (IOException e) {
-                       e.printStackTrace();
-                   }
+
+                        System.out.println("!!!!!!!!!!control: "+ctrl);
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
                }
            }
        });

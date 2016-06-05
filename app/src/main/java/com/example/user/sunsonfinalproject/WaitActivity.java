@@ -18,6 +18,8 @@ public class WaitActivity extends Activity {
     private Socket clientSocket1=ConnectActivity.clientSocket;
     private BufferedReader br1=ConnectActivity.br;
     private PrintWriter writer1=ConnectActivity.writer;
+    public static int play_again=0;
+    public int thread_again=0;
     Thread thread;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,8 +30,11 @@ public class WaitActivity extends Activity {
         // writer1.println("out");
         // writer1.flush();
         System.out.println("after writer");
-        thread=new Thread(Connection);
-        thread.start();
+        //if(thread_again==0) {
+            thread = new Thread(Connection);
+            thread.start();
+         //   thread_again=1;
+        //}
     }
         private Runnable Connection=new Runnable() {
             public void run() {
@@ -42,10 +47,19 @@ public class WaitActivity extends Activity {
                         //        writer1.flush();
                         //String line = ConnectActivity.br.readLine();
                         //System.out.println("xxxxxxxxxxxxxxx" + line);
-                        if (br1.readLine().equals("game")) {
+                        if(play_again==1){
+                            writer1.println("again");
+                            writer1.flush();
+                            play_again=0;
+                        }
+                        String line=br1.readLine();
+                        System.out.println("!-----------------------------------!"+line);
+                        if (line.equals("game")) {
                             System.out.println("xxxxxxxxxxxxxxx--iniinininininininin");
+                            MainActivity.ctrl=1;
                             Intent intent = new Intent();
                             intent.setClass(WaitActivity.this, MainActivity.class);
+                            System.out.println("in game");
                             WaitActivity.this.startActivity(intent);
 
                         }

@@ -9,7 +9,7 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 
 /**
- * Created by chanhua on 16/6/2.
+ * Created by chanhu on 16/6/2.
  */
 public class MathUI {
     public TextView q;

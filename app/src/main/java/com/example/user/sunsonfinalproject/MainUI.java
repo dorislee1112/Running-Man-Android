@@ -28,7 +28,7 @@ public class MainUI {
         bomb = (ImageButton) activity.findViewById(R.id.bomb);
         bg = (ImageView)activity.findViewById(R.id.imageView1);
         shake = (ImageView)activity.findViewById(R.id.imageView2);
-        math = (TextView)activity.findViewById(R.id.math);
+        math = (TextView)activity.findViewById(R.id.question);
         send = (Button)activity.findViewById(R.id.send);
         ans = (EditText)activity.findViewById(R.id.ans);
         math_bg = (ImageView)activity.findViewById(R.id.math_bg);

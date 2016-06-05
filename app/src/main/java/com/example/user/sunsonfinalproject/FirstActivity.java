@@ -1,27 +1,39 @@
 package com.example.user.sunsonfinalproject;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
+
+import java.io.BufferedReader;
+import java.io.PrintWriter;
 
 /**
  * Created by chanhua on 16/5/31.
  */
 public class FirstActivity extends Activity {
+
+    public ImageButton restart;
+    private BufferedReader br1=ConnectActivity.br;
+    private PrintWriter writer1=ConnectActivity.writer;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.one);
-        //Bundle bundle = this.getIntent().getExtras();
-        //float num = bundle.getFloat("num");
 
-       /* if(num==1)
-            setContentView(R.layout.one);
-        else if(num==2)
-            setContentView(R.layout.two);
-        else if(num==3)
-            setContentView(R.layout.three);
-        else if(num==4)
-            setContentView(R.layout.four);
-        */
+        restart=(ImageButton)this.findViewById(R.id.restart);
+        this.restart.setOnClickListener(new ImageButton.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(FirstActivity.this, WaitActivity.class);
+                FirstActivity.this.startActivity(intent);
+                System.out.println("--------------------again---------------------------");
+                WaitActivity.play_again=1;
+            }
+        });
     }
 }
 
