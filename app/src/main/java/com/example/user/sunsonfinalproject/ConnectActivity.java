@@ -63,7 +63,9 @@ public class ConnectActivity extends Activity{
                     writer.println("enter");
                     writer.flush();
                     try {
+                        Log.d("tag", "wait");
                         String line = br.readLine();
+                        Log.d("tag", "wait2 " + line);
                         System.out.println("收到的");
                         if (line.equals("start")) {
                             String selectColor = br.readLine();

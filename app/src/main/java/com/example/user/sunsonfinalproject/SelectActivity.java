@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
@@ -30,7 +31,9 @@ public class SelectActivity extends Activity {
 
         Bundle bundle = this.getIntent().getExtras();
         String color = bundle.getString("color");
+        String index = bundle.getString("playerIndex") ;
         selectUI.selectColor.setColorFilter(Color.parseColor(color), Mode.SRC_ATOP);
+        Log.d("tag", color + " " + index);
 
     System.out.println("OK");
         selectUI.check.setOnFocusChangeListener(new View.OnFocusChangeListener() {
