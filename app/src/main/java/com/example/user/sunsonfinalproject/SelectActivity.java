@@ -33,7 +33,7 @@ public class SelectActivity extends Activity {
         Bundle bundle = this.getIntent().getExtras();
         String color = bundle.getString("color");
         String index = bundle.getString("playerIndex") ;
-        selectUI.selectColor.setColorFilter(Color.parseColor(color), PorterDuff.Mode.MULTIPLY);
+        selectUI.selectColor.setColorFilter(Color.parseColor(color), PorterDuff.Mode.SRC_ATOP);
         Log.d("tag", color + " " + index);
 
     System.out.println("OK");

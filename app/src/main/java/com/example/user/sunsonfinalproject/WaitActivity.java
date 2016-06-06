@@ -3,6 +3,7 @@ package com.example.user.sunsonfinalproject;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 
 import java.io.BufferedReader;
@@ -17,11 +18,13 @@ public class WaitActivity extends Activity {
     WaitUI waitUI;
     private int serverPort1=EntryActivity.serverPort;
     private Socket clientSocket1=ConnectActivity.clientSocket;
-    private BufferedReader br1=ConnectActivity.br;
+    private BufferedReader br2=ConnectActivity.br;
     private PrintWriter writer1=ConnectActivity.writer;
     public static int play_again=0;
     public int thread_again=0;
+    private int game=0;
     Thread thread;
+    Handler handler;
     protected void onCreate(Bundle savedInstanceState) {
         AppManager.getAppManager().addActivity(this);
         super.onCreate(savedInstanceState);
@@ -33,44 +36,48 @@ public class WaitActivity extends Activity {
         // writer1.flush();
         System.out.println("after writer");
         //if(thread_again==0) {
-            thread = new Thread(Connection);
-            thread.start();
-         //   thread_again=1;
-        //}
+        thread = new Thread(Connection);
+        thread.start();
+        Log.d("Tag", "in Wait after jump");
+        if(MainActivity.thread != null){
+            MainActivity.thread.interrupt();
+            MainActivity.thread = null;
+            Log.d("Tag", "in Wait thread is null");
+        }
+    }
+
+    protected void onStop(){
+        super.onStop();
+        if(thread != null){
+            thread.interrupt();
+            thread = null;
+        }
     }
         private Runnable Connection=new Runnable() {
             public void run() {
                 try {
-                    while (true) {
-
-                        //br1 = new BufferedReader(new InputStreamReader(clientSocket1.getInputStream()));
-                        System.out.println("in try");
-                        //         writer1.println("in");
-                        //        writer1.flush();
-                        //String line = ConnectActivity.br.readLine();
-                        //System.out.println("xxxxxxxxxxxxxxx" + line);
                         Log.d("Tag", "in runnable: " + play_again);
                         if(play_again==1){
                             writer1.println("again");
                             writer1.flush();
                             play_again=0;
-//                            MainActivity.pauseSensor();
                             Log.d("Tag", "in Wait: again");
                         }
                         Log.d("Tag", "in Wait: again2");
-                        String line=br1.readLine();
+                        String line=br2.readLine();
+                        Log.d("Tag", "in Wait: get " + line);
                         System.out.println("in wait:!-----------------------------------!"+line);
                         if (line.equals("game")) {
                             System.out.println("xxxxxxxxxxxxxxx--iniinininininininin");
-                            MainActivity.ctrl=1;
+                            MainActivity.ctrl = 1;
                             Intent intent = new Intent();
                             intent.setClass(WaitActivity.this, MainActivity.class);
-                            System.out.println("in game");
                             WaitActivity.this.startActivity(intent);
+                            game = 1;
+                            finish();
+                            Log.d("Tag", "in Wait: in game ");
 
                         }
-
-                    }
                 } catch (IOException e) {
                 }
             }

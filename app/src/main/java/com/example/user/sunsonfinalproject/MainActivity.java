@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private float mLastZ;                    //z軸體感(Sensor)偏移
     private double mSpeed;                 //甩動力道數度
     private long mLastUpdateTime;           //觸發時間
-    public static int ctrl=0;
+    public static int ctrl=1;
 
 
     int bomb_left = 2;
@@ -51,7 +51,8 @@ public class MainActivity extends AppCompatActivity {
     private Socket clientSocket1 = ConnectActivity.clientSocket;
     private BufferedReader br1 = ConnectActivity.br;
     private PrintWriter writer1 = ConnectActivity.writer;
-    Thread thread;
+    public static readOneTime thread;
+    Handler handler;
 
     //甩動力道數度設定值 (數值越大需甩動越大力，數值越小輕輕甩動即會觸發)
     private static final int SPEED_SHRESHOLD = 500;
@@ -60,8 +61,11 @@ public class MainActivity extends AppCompatActivity {
     private static final int UPTATE_INTERVAL_TIME = 70;
 
 
+    private boolean end=true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+//        thread = new readOneTime();
         AppManager.getAppManager().addActivity(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -86,6 +90,8 @@ public class MainActivity extends AppCompatActivity {
         //註冊體感(Sensor)甩動觸發Listener
         mSensorManager.registerListener(SensorListener, mSensor, SensorManager.SENSOR_DELAY_GAME);
 
+//        thread.start();
+
         mainUI = new MainUI(this);
         mainUI.bomb.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -105,14 +111,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void pauseSensor(){
-        mSensorManager.unregisterListener(SensorListener);
-    }
+//    public void pauseSensor(){
+//        mSensorManager.unregisterListener(SensorListener);
+//    }
 
     private SensorEventListener SensorListener = new SensorEventListener() {
 
         public void onSensorChanged(SensorEvent mSensorEvent) {
-//            if (ctrl == 1) {
+//            if (thread == null) {
 
                 //當前觸發時間
                 long mCurrentUpdateTime = System.currentTimeMillis();
@@ -147,22 +153,155 @@ public class MainActivity extends AppCompatActivity {
 
                     Log.d("TAG", "搖一搖中..." + num);
 
+                    if(end) {
+                        thread = new readOneTime();
+                        thread.start();
 
-                    tmpThread();
-                    writer1.println(num);
-                    writer1.flush();
-
-                    while (sleep > 0) {
-                        sleep -= 0.1;
-                    }
-                    if (pause == 0)
+//                    thread.notify();
+                    if (pause == 0) {
                         num++;
+                    }
+//                    if(end){
+//                        thread.stopThread();
+//                    }
+//                    else{
+//                        try {
+//                            thread.wait();
+//                        }
+//                        catch (InterruptedException e) {
+//                            e.printStackTrace();
+//                            Log.e("tag", "thread wait wrong");
+//                        }
+//                    }
+
+
+//                        thread.interrupt();
+//                        thread = null;
+                        Log.d("Tag", "thread is null");
+                    }
+                    else{
+                        Log.d("Tag", "thread is not null");
+                    }
 
                 }
 //            }
-//            else{
-//
-//            }
+        }
+
+        public void readFromServer(){
+            try {
+                writer1.println(num);
+                writer1.flush();
+                String line = br1.readLine();
+                Log.d("TAG", "in main已讀"+line);
+                if (line.equals("one")) {
+                    Log.d("Tag", "in one");
+                    Intent intent = new Intent();
+                    intent.setClass(MainActivity.this, FirstActivity.class);
+                    MainActivity.this.startActivity(intent);
+//                    thread.interrupt();
+//                    thread = null;
+                    finish();
+                    Log.d("Tag", "out handler");
+
+//                    onPause();
+//                    onStop();
+//                    onDestroy();
+
+                           /*break;*/
+                } else if (line.equals("two")) {
+                    System.out.println("SECOND!!");
+                    Intent intent = new Intent();
+                    intent.setClass(MainActivity.this, SecondActivity.class);
+                    MainActivity.this.startActivity(intent);
+                    finish();
+//                           break;
+                } else if (line.equals("three")) {
+                    System.out.println("THIRD!!");
+                    Intent intent = new Intent();
+                    intent.setClass(MainActivity.this, ThirdActivity.class);
+                    MainActivity.this.startActivity(intent);
+                    finish();
+//                           break;
+                } else if (line.equals("four")) {
+                    System.out.println("FORTH!!");
+                    Intent intent = new Intent();
+                    intent.setClass(MainActivity.this, ForthActivity.class);
+                    MainActivity.this.startActivity(intent);
+                    finish();
+//                           break;
+                }
+                else if (line.equals("sleep")) {
+                    System.out.println("in sleep");
+                    rand = new Random();
+                    operindex = rand.nextInt(4);
+                    if (operindex == 0) {
+                        oper = "+";
+                        num1 = rand.nextInt(200) + 200;
+                        num2 = rand.nextInt(200) + 200;
+                        ans = num1 + num2;
+                    } else if (operindex == 1) {
+                        oper = "-";
+                        num1 = rand.nextInt(100) + 100;
+                        num2 = rand.nextInt(50) + 50;
+                        ans = num1 - num2;
+                    } else if (operindex == 2) {
+                        oper = "*";
+                        num1 = rand.nextInt(20);
+                        num2 = rand.nextInt(20);
+                        ans = num1 * num2;
+                    } else {
+                        oper = "/";
+                        num2 =rand.nextInt(100);
+                        num1 = num2 * rand.nextInt(10);
+
+                        ans = num1 / num2;
+                    }
+                    pause=1;
+
+                    Message msg = new Message();
+                    msg.what = stop;
+                    uiMessageHandler.sendMessage(msg);
+                    while (true){
+                        mainUI.send.setOnClickListener(new Button.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                if (Float.parseFloat(mainUI.ans.getText().toString()) == ans) {
+                                    mainUI.ans.setText("");
+                                    pause = 0;
+                                } else {
+                                    mainUI.ans.setText("");
+                                    mainUI.send.setText("Try Again");
+                                    pause = 1;
+                                }
+                            }
+
+                        });
+                        if(pause==0) {
+                            msg = new Message();
+                            msg.what = run;
+                            uiMessageHandler.sendMessage(msg);
+                            break;
+                        }
+                    }
+
+                }
+                else if (line.equals("success")) {
+                    System.out.println("-----------------in success-----------------------");
+                    bomb_left--;
+                    System.out.println(bomb_left);
+                }
+
+
+                // Thread.sleep(100);
+                Message msg = new Message();
+                bombMessageHandler.sendMessage(msg);
+
+                Log.d("end", "in main end fo run");
+                System.out.println("!!!!!!!!!!control: " + ctrl);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         public void onAccuracyChanged(Sensor sensor, int accuracy) {
@@ -174,134 +313,167 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
         //在程式關閉時移除體感(Sensor)觸發
         mSensorManager.unregisterListener(SensorListener);
+        thread = null;
+        Log.d("Tag", "on destroy");
     }
 
-   public void tmpThread(){
-       Thread readOneTime = new Thread(new Runnable()  {
-           public void run() {
-               Log.d("TAG", "in Main ctrl: " + ctrl);
-//               while(ctrl == 1) {
-                   // TODO Auto-generated method st
-                   try {
-//                       Log.d("TAG", "in Main tmpThread");
-                       String line = br1.readLine();
-                       Log.d("TAG", "in main已讀"+line);
-                       if (line.equals("one")) {
-                           System.out.println("FIRST!!");
-                           Intent intent = new Intent();
-                           intent.setClass(MainActivity.this, FirstActivity.class);
-                           MainActivity.this.startActivity(intent);
-                           Log.d("Tag", "in main get one");
-                           MainActivity.this.onStop();
-                           Log.d("Tag", "in main get one stop");
-                           /*break;*/
-                       } else if (line.equals("two")) {
-                           System.out.println("SECOND!!");
-                           Intent intent = new Intent();
-                           intent.setClass(MainActivity.this, SecondActivity.class);
-                           MainActivity.this.startActivity(intent);
-                           finish();
+    protected void onStop(){
+        super.onStop();
+        Log.d("Tag", "on stop null");
+        if(thread != null){
+            Log.d("Tag", "on stop");
+            thread.interrupt();
+            thread = null;
+        }
+        mSensorManager.unregisterListener(SensorListener);
+    }
+
+    protected void onPause(){
+        super.onPause();
+        if(thread != null){
+            Log.d("Tag", "on pause");
+            thread.interrupt();
+            thread = null;
+        }
+        Log.d("Tag", "on pause end");
+    }
+
+    class readOneTime extends Thread{
+        boolean flag = true;
+        public void stopThread(){
+            flag = false;
+        }
+        public void run() {
+
+            try {
+//                while (flag) {
+                end = false;
+                    Log.d("TAG", "in Main ctrl: " + ctrl);
+                    if (ctrl == 0) {
+                        Log.d("TAG", "in Main return");
+                        return;
+                    }
+                    writer1.println(num);
+                    writer1.flush();
+                    String line = br1.readLine();
+                    Log.d("TAG", "in main已讀" + line);
+                    if (line.equals("one")) {
+                        Log.d("Tag", "in one");
+                        end = false;
+                        mSensorManager.unregisterListener(SensorListener);
+                        Log.d("Tag", "in main unregister");
+                        Intent intent = new Intent();
+                        intent.setClass(MainActivity.this, FirstActivity.class);
+                        MainActivity.this.startActivity(intent);
+                        ctrl = 0;
+                        Thread.currentThread().interrupt();
+                        thread = null;
+                        finish();
+                        Log.d("Tag", "in main finish");
+
+                    } else if (line.equals("two")) {
+                        Log.d("Tag", "in two");
+                        end = false;
+                        mSensorManager.unregisterListener(SensorListener);
+                        Log.d("Tag", "in main unregister");
+                        Intent intent = new Intent();
+                        intent.setClass(MainActivity.this, SecondActivity.class);
+                        MainActivity.this.startActivity(intent);
+                        ctrl = 0;
+                        Thread.currentThread().interrupt();
+                        thread = null;
+                        finish();
+                        Log.d("Tag", "in main finish");
+
+                    } else if (line.equals("three")) {
+                        System.out.println("THIRD!!");
+                        Intent intent = new Intent();
+                        intent.setClass(MainActivity.this, ThirdActivity.class);
+                        MainActivity.this.startActivity(intent);
+                        finish();
 //                           break;
-                       } else if (line.equals("three")) {
-                           System.out.println("THIRD!!");
-                           Intent intent = new Intent();
-                           intent.setClass(MainActivity.this, ThirdActivity.class);
-                           MainActivity.this.startActivity(intent);
-                           finish();
+                    } else if (line.equals("four")) {
+                        System.out.println("FORTH!!");
+                        Intent intent = new Intent();
+                        intent.setClass(MainActivity.this, ForthActivity.class);
+                        MainActivity.this.startActivity(intent);
+                        finish();
 //                           break;
-                       } else if (line.equals("four")) {
-                           System.out.println("FORTH!!");
-                           Intent intent = new Intent();
-                           intent.setClass(MainActivity.this, ForthActivity.class);
-                           MainActivity.this.startActivity(intent);
-                           finish();
-//                           break;
-                       }
-                       else if (line.equals("sleep")) {
+                    }
+                    //sleep
+                    else if (line.equals("sleep")) {
                         System.out.println("in sleep");
-                               rand = new Random();
-                           operindex = rand.nextInt(4);
-                           if (operindex == 0) {
-                               oper = "+";
-                               num1 = rand.nextInt(200) + 200;
-                               num2 = rand.nextInt(200) + 200;
-                               ans = num1 + num2;
-                           } else if (operindex == 1) {
-                               oper = "-";
-                               num1 = rand.nextInt(100) + 100;
-                               num2 = rand.nextInt(50) + 50;
-                               ans = num1 - num2;
-                           } else if (operindex == 2) {
-                               oper = "*";
-                               num1 = rand.nextInt(20);
-                               num2 = rand.nextInt(20);
-                               ans = num1 * num2;
-                           } else {
-                               oper = "/";
-                               num2 =rand.nextInt(100);
-                               num1 = num2 * rand.nextInt(10);
+                        rand = new Random();
+                        operindex = rand.nextInt(4);
+                        if (operindex == 0) {
+                            oper = "+";
+                            num1 = rand.nextInt(200) + 200;
+                            num2 = rand.nextInt(200) + 200;
+                            ans = num1 + num2;
+                        } else if (operindex == 1) {
+                            oper = "-";
+                            num1 = rand.nextInt(100) + 100;
+                            num2 = rand.nextInt(50) + 50;
+                            ans = num1 - num2;
+                        } else if (operindex == 2) {
+                            oper = "*";
+                            num1 = rand.nextInt(20);
+                            num2 = rand.nextInt(20);
+                            ans = num1 * num2;
+                        } else {
+                            oper = "/";
+                            num2 = rand.nextInt(100);
+                            num1 = num2 * rand.nextInt(10);
 
-                               ans = num1 / num2;
-                           }
-                           pause=1;
+                            ans = num1 / num2;
+                        }
+                        pause = 1;
 
-                           Message msg = new Message();
-                           msg.what = stop;
-                           uiMessageHandler.sendMessage(msg);
-                           while (true){
-                           mainUI.send.setOnClickListener(new Button.OnClickListener() {
-                               @Override
-                               public void onClick(View v) {
-                                       if (Float.parseFloat(mainUI.ans.getText().toString()) == ans) {
-                                           mainUI.ans.setText("");
-                                           pause = 0;
-                                       } else {
-                                           mainUI.ans.setText("");
-                                           mainUI.send.setText("Try Again");
-                                           pause = 1;
-                                       }
-                               }
+                        Message msg = new Message();
+                        msg.what = stop;
+                        uiMessageHandler.sendMessage(msg);
+                        while (true) {
+                            mainUI.send.setOnClickListener(new Button.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    if (Float.parseFloat(mainUI.ans.getText().toString()) == ans) {
+                                        mainUI.ans.setText("");
+                                        pause = 0;
+                                    } else {
+                                        mainUI.ans.setText("");
+                                        mainUI.send.setText("Try Again");
+                                        pause = 1;
+                                    }
+                                }
 
-                           });
-                            if(pause==0) {
+                            });
+                            if (pause == 0) {
                                 msg = new Message();
                                 msg.what = run;
                                 uiMessageHandler.sendMessage(msg);
                                 break;
                             }
-                              ///  break;
-                            //}
-                       }
+                        }
 
-                       }
-                       else if (line.equals("success")) {
-                           System.out.println("-----------------in success-----------------------");
-                           bomb_left--;
-                           System.out.println(bomb_left);
-                       }
-
-
-                       // Thread.sleep(100);
-                       Message msg = new Message();
-                       bombMessageHandler.sendMessage(msg);
-
-                       Log.d("end", "in main end fo run");
-                       System.out.println("!!!!!!!!!!control: " + ctrl);
-
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                    }
+                    //success
+                    else if (line.equals("success")) {
+                        System.out.println("-----------------in success-----------------------");
+                        bomb_left--;
+                        System.out.println(bomb_left);
                     }
 
-               }
-//           }
-       });
-       if(ctrl == 1) {
-           readOneTime.start();
-           Log.d("end", "in main thread start");
-       }
-   }
+                    Message msg = new Message();
+                    bombMessageHandler.sendMessage(msg);
+                    end = true;
+                    Log.d("end", "in main end run");
+//                }
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
 
-
+        }
+    }
 
 
 

@@ -1,8 +1,6 @@
 package com.example.user.sunsonfinalproject;
 
 import android.app.Activity;
-import android.app.ActivityManager;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,16 +27,15 @@ public class FirstActivity extends Activity {
 
         restart=(ImageButton)this.findViewById(R.id.restart);
         Log.d("Tag", "in first btn out");
+
         this.restart.setOnClickListener(new ImageButton.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent();
                 WaitActivity.play_again=1;
-                MainActivity.ctrl = 0;
+//                MainActivity.ctrl = 0;
                 intent.setClass(FirstActivity.this, WaitActivity.class);
                 Log.d("Tag", "in first--------------------again---------------------------");
                 FirstActivity.this.startActivity(intent);
-                System.out.println("--------------------again---------------------------");
-                WaitActivity.play_again = 1;
             }
         });
         exit = (ImageButton)this.findViewById(R.id.exit);
