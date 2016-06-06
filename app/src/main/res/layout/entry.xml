@@ -26,8 +26,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
         android:src="@drawable/name"
+        android:scaleType="fitXY"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -46,7 +48,7 @@
         android:layout_below="@+id/ic_launcher"
         android:layout_toRightOf="@+id/textView"
         android:layout_toEndOf="@+id/textView"
-        android:text="172.20.115.250" />
+        android:text="172.20.140.16" />
 
     <TextView
         android:layout_width="wrap_content"

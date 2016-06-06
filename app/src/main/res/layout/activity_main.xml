@@ -90,6 +90,7 @@
         android:layout_centerHorizontal="true"
         android:textSize="25dp"
         android:layout_centerVertical="true"
+        android:inputType="numberSigned"
         android:minWidth="100dp" />
 
     <Button

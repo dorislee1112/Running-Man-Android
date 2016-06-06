@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -39,10 +40,13 @@ public class ConnectActivity extends Activity{
         System.out.println("已經連線...");
         /*writer.println("enter");
         writer.flush();*/
-
-
-
     }
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {}
+        return true;
+    }
+
     private Runnable Connection=new Runnable() {
         public void run() {
             try{

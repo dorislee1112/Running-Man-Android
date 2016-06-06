@@ -6,17 +6,24 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.hardware.display.DisplayManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.PowerManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Display;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Random;
@@ -49,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
     private int serverPort1 = EntryActivity.serverPort;
     private Socket clientSocket1 = ConnectActivity.clientSocket;
-    private BufferedReader br1 = ConnectActivity.br;
+    private BufferedReader br1=WaitActivity.br2;
     private PrintWriter writer1 = ConnectActivity.writer;
     public static readOneTime thread;
     Handler handler;
@@ -69,6 +76,8 @@ public class MainActivity extends AppCompatActivity {
         AppManager.getAppManager().addActivity(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
         mainUI = new MainUI(this);
         mainUI.bg.setVisibility(View.VISIBLE);
         mainUI.bomb.setVisibility(View.VISIBLE);
@@ -108,18 +117,46 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+    }
 
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {}
+        return true;
     }
 
 //    public void pauseSensor(){
 //        mSensorManager.unregisterListener(SensorListener);
 //    }
 
+    public boolean isScreenOn(Context context) {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
+            DisplayManager dm = (DisplayManager) context.getSystemService(Context.DISPLAY_SERVICE);
+            boolean screenOn = false;
+            for (Display display : dm.getDisplays()) {
+                if (display.getState() != Display.STATE_OFF) {
+                    screenOn = true;
+                }
+            }
+            return screenOn;
+        } else {
+            PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
+            //noinspection deprecation
+            return pm.isScreenOn();
+        }
+    }
+
     private SensorEventListener SensorListener = new SensorEventListener() {
 
         public void onSensorChanged(SensorEvent mSensorEvent) {
+<<<<<<< HEAD
 //            if (thread == null) {
 
+=======
+//            if (ctrl == 1) {
+            //WindowManager.LayoutParams params = getWindow().getAttributes();
+            //System.out.println(isScreenOn(MainActivity.this)+"=================================@@");
+            if(isScreenOn(MainActivity.this)) {
+>>>>>>> c3e1250724c5bac6aa6c38e69e23012f3fdef9fb
                 //當前觸發時間
                 long mCurrentUpdateTime = System.currentTimeMillis();
 
@@ -153,6 +190,7 @@ public class MainActivity extends AppCompatActivity {
 
                     Log.d("TAG", "搖一搖中..." + num);
 
+<<<<<<< HEAD
                     if(end) {
                         thread = new readOneTime();
                         thread.start();
@@ -183,7 +221,22 @@ public class MainActivity extends AppCompatActivity {
                         Log.d("Tag", "thread is not null");
                     }
 
+=======
+//                    if (ctrl==1) {
+                    tmpThread();
+                    writer1.println(num);
+                    writer1.flush();
+
+                    while (sleep > 0) {
+                        sleep -= 0.1;
+                    }
+                    if (pause == 0)
+                        num++;
+                    //                   }
+>>>>>>> c3e1250724c5bac6aa6c38e69e23012f3fdef9fb
                 }
+
+            }
 //            }
         }
 
@@ -317,6 +370,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d("Tag", "on destroy");
     }
 
+<<<<<<< HEAD
     protected void onStop(){
         super.onStop();
         Log.d("Tag", "on stop null");
@@ -471,6 +525,142 @@ public class MainActivity extends AppCompatActivity {
                 }catch(Exception e){
                     e.printStackTrace();
                 }
+=======
+
+
+   public void tmpThread(){
+       Thread readOneTime = new Thread(new Runnable()  {
+           public void run() {
+               Log.d("TAG", "in Main ctrl: " + ctrl);
+
+               try{
+                           String line = br1.readLine();
+                           Log.d("TAG", "in main已讀" + line);
+//                       if(line.equals("game"))
+                           //                          setContentView(R.layout.activity_main);
+                           if (line.equals("one")) {
+                               System.out.println("FIRST!!");
+                               Intent intent = new Intent();
+                               intent.setClass(MainActivity.this, FirstActivity.class);
+                               MainActivity.this.startActivity(intent);
+                               Log.d("Tag", "in main get one");
+                               MainActivity.this.onStop();
+                               Log.d("Tag", "in main get one stop");
+                               ctrl=0;
+                               //br1.close();
+                               //this.getApplicationContext.finish();
+                               //break;
+                           } else if (line.equals("two")) {
+                               System.out.println("SECOND!!");
+                               Intent intent = new Intent();
+                               intent.setClass(MainActivity.this, SecondActivity.class);
+                               MainActivity.this.startActivity(intent);
+                               ctrl=0;
+                               //br1.close();
+                               //finish();
+                               //break;
+                           } else if (line.equals("three")) {
+                               System.out.println("THIRD!!");
+                               Intent intent = new Intent();
+                               intent.setClass(MainActivity.this, ThirdActivity.class);
+                               MainActivity.this.startActivity(intent);
+                               ctrl=0;
+                               //br1.close();
+                               //finish();
+                               //break;
+                           } else if (line.equals("four")) {
+                               System.out.println("FORTH!!");
+                               Intent intent = new Intent();
+                               intent.setClass(MainActivity.this, ForthActivity.class);
+                               MainActivity.this.startActivity(intent);
+                               //ctrl=0;
+                               //br1.close();
+                               finish();
+                               //break;
+                           } else if (line.equals("sleep")) {
+                               System.out.println("in sleep");
+                               rand = new Random();
+                               operindex = rand.nextInt(4);
+                               if (operindex == 0) {
+                                   oper = "+";
+                                   num1 = rand.nextInt(200) + 200;
+                                   num2 = rand.nextInt(200) + 200;
+                                   ans = num1 + num2;
+                               } else if (operindex == 1) {
+                                   oper = "-";
+                                   num1 = rand.nextInt(100) + 100;
+                                   num2 = rand.nextInt(50) + 50;
+                                   ans = num1 - num2;
+                               } else if (operindex == 2) {
+                                   oper = "*";
+                                   num1 = rand.nextInt(20);
+                                   num2 = rand.nextInt(20);
+                                   ans = num1 * num2;
+                               } else {
+                                   oper = "/";
+                                   num2 = rand.nextInt(100);
+                                   num1 = num2 * rand.nextInt(10);
+                                   ans = num1 / num2;
+                               }
+                               pause = 1;
+
+                               Message msg = new Message();
+                               msg.what = stop;
+                               uiMessageHandler.sendMessage(msg);
+                               while (true) {
+                                   mainUI.send.setOnClickListener(new Button.OnClickListener() {
+                                       @Override
+                                       public void onClick(View v) {
+                                           if (Float.parseFloat(mainUI.ans.getText().toString()) == ans) {
+                                               mainUI.ans.setText("");
+                                               pause = 0;
+                                           } else {
+                                               mainUI.ans.setText("");
+                                               mainUI.send.setText("Try Again");
+                                               pause = 1;
+                                           }
+                                       }
+
+                                   });
+                                   if (pause == 0) {
+                                       msg = new Message();
+                                       msg.what = run;
+                                       uiMessageHandler.sendMessage(msg);
+                                       break;
+                                   }
+                                   ///  break;
+                                   //}
+                               }
+                           } else if (line.equals("success")) {
+                               System.out.println("-----------------in success-----------------------");
+                               bomb_left--;
+                               System.out.println(bomb_left);
+                               Message msg = new Message();
+                               bombMessageHandler.sendMessage(msg);
+                           }
+
+
+                           // Thread.sleep(100);
+
+
+                           Log.d("end", "in main end fo run");
+                           System.out.println("!!!!!!!!!!control: " + ctrl);
+                      // }
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+
+          }
+       });
+      // if(ctrl == 1) {
+           readOneTime.start();
+           Log.d("end", "in main thread start");
+       //}
+   }
+
+>>>>>>> c3e1250724c5bac6aa6c38e69e23012f3fdef9fb
 
         }
     }
@@ -494,6 +684,7 @@ Handler uiMessageHandler = new Handler(){
                 mainUI.ans.setVisibility(View.VISIBLE);
                 mainUI.math.setVisibility(View.VISIBLE);
                 mainUI.send.setVisibility(View.VISIBLE);
+                mainUI.bomb_num.setVisibility(View.INVISIBLE);
                 mainUI.math.setText(num1 +" "+ oper +" "+ num2 + " = ? ");
                 break;
             case run:
@@ -504,6 +695,7 @@ Handler uiMessageHandler = new Handler(){
                 mainUI.bomb.setVisibility(View.VISIBLE);
                 mainUI.shake.setVisibility(View.VISIBLE);
                 mainUI.send.setVisibility(View.INVISIBLE);
+                mainUI.bomb_num.setVisibility(View.VISIBLE);
                 break;
         }
 
