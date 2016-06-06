@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageButton;
 
@@ -31,6 +32,7 @@ public class FirstActivity extends Activity {
         Log.d("Tag", "in first btn out");
         this.restart.setOnClickListener(new ImageButton.OnClickListener() {
             public void onClick(View v) {
+                //AppManager.getAppManager().finishActivity(MainActivity.class);
                 Intent intent = new Intent();
                 WaitActivity.play_again=1;
                 MainActivity.ctrl = 0;
@@ -48,6 +50,11 @@ public class FirstActivity extends Activity {
             }
         });
 
+    }
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {}
+        return true;
     }
 }
 

@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
@@ -17,7 +19,7 @@ public class WaitActivity extends Activity {
     WaitUI waitUI;
     private int serverPort1=EntryActivity.serverPort;
     private Socket clientSocket1=ConnectActivity.clientSocket;
-    private BufferedReader br1=ConnectActivity.br;
+    public static BufferedReader br2=ConnectActivity.br;;
     private PrintWriter writer1=ConnectActivity.writer;
     public static int play_again=0;
     public int thread_again=0;
@@ -38,9 +40,16 @@ public class WaitActivity extends Activity {
          //   thread_again=1;
         //}
     }
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {}
+        return true;
+    }
+
         private Runnable Connection=new Runnable() {
             public void run() {
                 try {
+
                     while (true) {
 
                         //br1 = new BufferedReader(new InputStreamReader(clientSocket1.getInputStream()));
@@ -58,9 +67,9 @@ public class WaitActivity extends Activity {
                             Log.d("Tag", "in Wait: again");
                         }
                         Log.d("Tag", "in Wait: again2");
-                        String line=br1.readLine();
-                        System.out.println("in wait:!-----------------------------------!"+line);
-                        if (line.equals("game")) {
+                        //String line=ConnectActivity.br.readLine();
+                        //System.out.println("in wait:!-----------------------------------!"+line);
+                        if (ConnectActivity.br.readLine().equals("game")) {
                             System.out.println("xxxxxxxxxxxxxxx--iniinininininininin");
                             MainActivity.ctrl=1;
                             Intent intent = new Intent();
