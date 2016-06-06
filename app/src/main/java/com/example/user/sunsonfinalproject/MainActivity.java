@@ -218,8 +218,7 @@ public class MainActivity extends AppCompatActivity {
 //                           break;
                        }
                        else if (line.equals("sleep")) {
-                        System.out.println("in sleep");
-                               rand = new Random();
+                           rand = new Random();
                            operindex = rand.nextInt(4);
                            if (operindex == 0) {
                                oper = "+";
@@ -322,6 +321,7 @@ Handler uiMessageHandler = new Handler(){
                 mainUI.ans.setVisibility(View.VISIBLE);
                 mainUI.math.setVisibility(View.VISIBLE);
                 mainUI.send.setVisibility(View.VISIBLE);
+                mainUI.bomb_num.setVisibility(View.INVISIBLE);
                 mainUI.math.setText(num1 +" "+ oper +" "+ num2 + " = ? ");
                 break;
             case run:
@@ -332,6 +332,7 @@ Handler uiMessageHandler = new Handler(){
                 mainUI.bomb.setVisibility(View.VISIBLE);
                 mainUI.shake.setVisibility(View.VISIBLE);
                 mainUI.send.setVisibility(View.INVISIBLE);
+                mainUI.bomb_num.setVisibility(View.VISIBLE);
                 break;
         }
 
