@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Tool Man</string>
+    <string name="x2">x2</string>>
+    <string name="math_question">math question</string>
+    <string name="Answer">Answer</string>
+    <string name="Submit">Submit</string>
+    <string name="BOMB">BOMB</string>
 </resources>

@@ -8,6 +8,9 @@
     android:paddingRight="0dp"
     android:paddingTop="0dp"
     tools:context="com.example.user.sunsonfinalproject.MainActivity">
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" />
 
     <ImageView
         android:id="@+id/imageView1"
@@ -19,6 +22,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:contentDescription="@string/BOMB"
         android:src="@drawable/shake_bg" />
 
     <ImageButton
@@ -26,11 +30,10 @@
         android:layout_height="match_parent"
         android:id="@+id/math_bg"
         android:adjustViewBounds="false"
-        android:accessibilityLiveRegion="polite"
         android:layout_alignWithParentIfMissing="false"
         android:background="#00ffffff"
-        android:tintMode="src_atop"
         android:scaleType="fitXY"
+        android:contentDescription="@string/BOMB"
         android:src="@drawable/math" />
 
     <ImageView
@@ -41,6 +44,7 @@
         android:maxWidth="100dp"
         android:src="@drawable/shake"
         android:layout_centerVertical="true"
+        android:contentDescription="@string/BOMB"
         android:layout_centerHorizontal="true" />
 
     <ImageButton
@@ -48,12 +52,11 @@
         android:layout_height="100dp"
         android:id="@+id/bomb"
         android:adjustViewBounds="false"
-        android:accessibilityLiveRegion="polite"
         android:layout_alignWithParentIfMissing="false"
         android:background="#00ffffff"
-        android:tintMode="src_atop"
         android:scaleType="fitXY"
         android:src="@drawable/bomb"
+        android:contentDescription="@string/BOMB"
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:layout_below="@+id/imageView2"
@@ -63,32 +66,32 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="x2"
+        android:text="@string/x2"
         android:id="@+id/bomb_num"
-        android:textSize="48dp"
+        android:textSize="48sp"
         android:textColor="#000000"
         android:layout_alignBottom="@+id/bomb"
-        android:layout_marginLeft="-8dp"
+        android:layout_marginStart="-8dp"
         android:layout_toRightOf="@+id/bomb"
         android:layout_toEndOf="@+id/bomb" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="math question"
+        android:text="@string/math_question"
         android:id="@+id/question"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="155dp"
-        android:textSize="40dp" />
+        android:textSize="40sp" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/ans"
-        android:hint = "Answer"
+        android:hint ="@string/Answer"
         android:layout_centerHorizontal="true"
-        android:textSize="25dp"
+        android:textSize="25sp"
         android:layout_centerVertical="true"
         android:inputType="numberSigned"
         android:minWidth="100dp" />
@@ -96,7 +99,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Submit"
+        android:text="@string/Submit"
         android:id="@+id/send"
         android:layout_alignTop="@+id/bomb"
         android:layout_centerHorizontal="true" />

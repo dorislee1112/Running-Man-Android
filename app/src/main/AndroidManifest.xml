@@ -5,8 +5,8 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.RESTART_PACKAGES" />
     <application
+        android:largeHeap="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -22,19 +22,19 @@
         <activity
             android:name=".FirstActivity"
             android:label=".one"
-            ></activity>
+            />
         <activity
             android:name=".SecondActivity"
             android:label=".two"
-            ></activity>
+            />
         <activity
             android:name=".ThirdActivity"
             android:label=".three"
-            ></activity>
+            />
         <activity
             android:name=".ForthActivity"
             android:label=".four"
-            ></activity>
+            />
     <activity
             android:name=".MainActivity"
             android:label=".activity_main"

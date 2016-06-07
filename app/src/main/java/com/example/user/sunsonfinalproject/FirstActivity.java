@@ -31,10 +31,8 @@ public class FirstActivity extends Activity {
 
         this.restart.setOnClickListener(new ImageButton.OnClickListener() {
             public void onClick(View v) {
-                //AppManager.getAppManager().finishActivity(MainActivity.class);
                 Intent intent = new Intent();
                 WaitActivity.play_again=1;
-//                MainActivity.ctrl = 0;
                 intent.setClass(FirstActivity.this, WaitActivity.class);
                 Log.d("Tag", "in first--------------------again---------------------------");
                 FirstActivity.this.startActivity(intent);

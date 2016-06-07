@@ -14,10 +14,8 @@
         android:layout_height="match_parent"
         android:id="@+id/third"
         android:adjustViewBounds="false"
-        android:accessibilityLiveRegion="polite"
         android:layout_alignWithParentIfMissing="false"
         android:background="#00ffffff"
-        android:tintMode="src_atop"
         android:scaleType="fitXY"
         android:src="@drawable/third" />
 
