@@ -14,7 +14,7 @@
 # How to execute:
   
   + Download Server.jar from: https://github.com/AngusLinty/Running-Man-PC
-  + Download tooMan.apk from: https://github.com/dorislee1112/Running-Man-Android
+  + Download toolMan.apk from: https://github.com/dorislee1112/Running-Man-Android
   + Install App on Android device
   + Run server by execute Server.jar
   
